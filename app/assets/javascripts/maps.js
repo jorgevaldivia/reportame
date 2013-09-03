@@ -1,5 +1,3 @@
-var main_map;
-
 function initialize_main_map() {
   $("#main-map-canvas").removeClass("hide");
 
@@ -9,6 +7,14 @@ function initialize_main_map() {
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
   main_map = new google.maps.Map(document.getElementById("main-map-canvas"), mapOptions);
+
+  console.log($("[ng-controller=IncidentCtrl]"));
+  var myLatlng = new google.maps.LatLng(20.6711852, -103.3628912);
+  // var marker = new google.maps.Marker({
+  //     position: myLatlng,
+  //     map: main_map,
+  //     title: 'Hello World!'
+  // });
 }
 
 // Resize stuff...

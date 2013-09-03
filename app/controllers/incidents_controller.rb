@@ -5,6 +5,11 @@ class IncidentsController < ApplicationController
   # GET /incidents.json
   def index
     @incidents = Incident.all
+
+    respond_to do |format|
+      format.html
+      format.json{ render json: @incidents.to_json(methods: :full_address) }
+    end
   end
 
   # GET /incidents/1
