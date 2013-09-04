@@ -1,5 +1,5 @@
 Reportame::Application.routes.draw do
-  get "incident_types/index"
+  resources :incident_types, only: [:index]
   resources :incidents
 
   get "home/index"

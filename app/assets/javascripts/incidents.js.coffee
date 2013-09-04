@@ -42,3 +42,11 @@ app.factory "Incident", ["$resource", ($resource) ->
 
     $scope.map = main_map
 ]
+
+app.factory "IncidentType", ["$resource", ($resource) ->
+  $resource("/incident_types/:id", {id: "@id"}, {update: {method: "PUT"}})
+]
+
+@IncidentTypeCtrl = ["$scope", "IncidentType", ($scope, IncidentType) ->
+  $scope.incident_types = IncidentType.query()
+]

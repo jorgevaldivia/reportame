@@ -12,9 +12,9 @@ describe Incident do
 
   	let( :stats ) { Incident.statistics}
 
-  	it("should set robbery to 40") 				{ stats.detect{ |x| x.name == "robbery" }.percentage.should eq 40 }
-  	it("should set assault to 30") 				{ stats.detect{ |x| x.name == "assault" }.percentage.should eq 30 }
-  	it("should set auto_theft to 10") 		{ stats.detect{ |x| x.name == "auto_theft" }.percentage.should eq 10 }
-  	it("should set other to 20") 					{ stats.detect{ |x| x.name == "other" }.percentage.should eq 20 }
+  	it("should set robbery to 40") 				{ stats.detect{ |x| x.id == "robbery" }.percentage.should eq 40 }
+  	it("should set assault to 30") 				{ stats.detect{ |x| x.id == "assault" }.percentage.should eq 30 }
+  	it("should set auto_theft to 10") 		{ stats.detect{ |x| x.id == "auto_theft" }.percentage.should eq 10 }
+  	it("should set other to 20") 					{ stats.detect{ |x| x.id == "other" }.percentage.should eq 20 }
   end
 end
