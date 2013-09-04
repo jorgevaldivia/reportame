@@ -24,6 +24,7 @@ es:
         robbery: Robo
         assault: Asalto
         auto_theft: Robo de Auto
+        vandalism: Vandalismo
         other: Otro
         address_1: Domicilio
         address_2: Domicilio 2

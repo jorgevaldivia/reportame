@@ -3,7 +3,7 @@ class Incident < ActiveRecord::Base
 	geocoded_by :full_address
 	after_validation :geocode, if: Proc.new{ full_address_changed? }
 
-	TYPES = ["robbery", "assault", "auto_theft", "other"]
+	TYPES = ["robbery", "assault", "auto_theft", "vandalism", "other"]
 
 	def self.statistics
 		types 						= TYPES.collect { |v| [ IncidentType.new(id: v, name: Incident.translate_type(v), percentage: 0) ] }.flatten
