@@ -8,7 +8,7 @@ class Incident < ActiveRecord::Base
 	validates 					:city, inclusion: { in: Proc.new{ Incident.cities } }
 	validates 					:address_1, :description, :incident_type, :occured_at, presence: true
 
-	TYPES 							= ["robbery", "assault", "auto_theft", "vandalism", "other"]
+	TYPES 							= ["robbery", "assault", "auto_theft", "vandalism", "violence", "other"]
 
 	def self.cities
 		YAML.load(File.open "#{Rails.root}/config/cities.yml")["cities"]

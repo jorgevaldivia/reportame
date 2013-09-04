@@ -9,7 +9,7 @@ describe Incident do
     let(:valid_subject)   { FactoryGirl.create(:incident) }
     before(:all)          { subject.save }
     before(:all)          { valid_subject.save }
-    after(:all)            { Incident.delete_all }
+    after(:all)           { Incident.delete_all }
 
     describe "valid" do
       it("should allow Zapopan as a city")      { valid_subject.errors.messages[:city].should be nil }
@@ -23,8 +23,8 @@ describe Incident do
       it("should require occurred_at")          { subject.errors.messages[:occured_at].should include(I18n.t("errors.messages.blank")) }
     end
 
-    it("should set state to Jalsico")         { subject.state.should eq "Jalisco" }
-    it("should set country to Mexico")        { subject.country.should eq "Mexico" }
+    it("should set state to Jalsico")           { subject.state.should eq "Jalisco" }
+    it("should set country to Mexico")          { subject.country.should eq "Mexico" }
   end
 
   describe "statistics" do
@@ -37,9 +37,9 @@ describe Incident do
 
   	let( :stats ) { Incident.statistics}
 
-  	it("should set robbery to 40") 				{ stats.detect{ |x| x.id == "robbery" }.percentage.should eq 40 }
-  	it("should set assault to 30") 				{ stats.detect{ |x| x.id == "assault" }.percentage.should eq 30 }
-  	it("should set auto_theft to 10") 		{ stats.detect{ |x| x.id == "auto_theft" }.percentage.should eq 10 }
-  	it("should set other to 20") 					{ stats.detect{ |x| x.id == "other" }.percentage.should eq 20 }
+  	it("should set robbery to 40") 				      { stats.detect{ |x| x.id == "robbery" }.percentage.should eq 40 }
+  	it("should set assault to 30") 				      { stats.detect{ |x| x.id == "assault" }.percentage.should eq 30 }
+  	it("should set auto_theft to 10") 		      { stats.detect{ |x| x.id == "auto_theft" }.percentage.should eq 10 }
+  	it("should set other to 20") 					      { stats.detect{ |x| x.id == "other" }.percentage.should eq 20 }
   end
 end
