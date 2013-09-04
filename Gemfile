@@ -46,6 +46,7 @@ end
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
+	gem 'factory_girl_rails', '4.2.1'
 end
 
 gem 'anjlab-bootstrap-rails', '>= 3.0.0.0', :require => 'bootstrap-rails'
