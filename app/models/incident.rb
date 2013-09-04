@@ -5,6 +5,18 @@ class Incident < ActiveRecord::Base
 
 	TYPES = ["robbery", "assault", "auto_theft", "other"]
 
+	def self.statistics
+		types 						= TYPES.collect { |v| [ IncidentType.new(name: v, percentage: 0) ] }.flatten
+		incidents 				= Incident.select("incident_type, count(*) as count").where("incident_type is not null").group("incident_type")
+		total_incidents 	= incidents.map(&:count).sum
+
+		incidents.each do | incident |
+			types.detect{ |x| x.name == incident.incident_type }.percentage = ((incident.count / total_incidents.to_f) * 100).to_i
+		end
+
+		types.to_a
+	end
+
 	def full_address
 		"#{address_1} #{address_2} #{city} #{state} #{zip} #{country}"
 	end
