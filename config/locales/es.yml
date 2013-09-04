@@ -39,3 +39,4 @@ es:
 errors:
     messages:
       inclusion: "no es valor aceptable"
+      blank: "es requerido"

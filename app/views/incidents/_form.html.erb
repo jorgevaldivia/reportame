@@ -49,12 +49,6 @@
             </div>
           </div>
           <div class="field form-group">
-            <%= f.label :description, class: "col-lg-2 control-label" %>
-            <div class="col-lg-10">
-              <%= f.text_area :description, class: "form-control" %>
-            </div>
-          </div>
-          <div class="field form-group">
             <%= f.label :incident_type, class: "col-lg-2 control-label" %>
             <div class="col-lg-10">
               <%= f.select :incident_type, 
@@ -66,6 +60,12 @@
             <%= f.label :occured_at, class: "col-lg-2 control-label" %>
             <div class="col-lg-10">
               <%= f.datetime_select :occured_at %>
+            </div>
+          </div>
+          <div class="field form-group">
+            <%= f.label :description, class: "col-lg-2 control-label" %>
+            <div class="col-lg-10">
+              <%= f.text_area :description, class: "form-control" %>
             </div>
           </div>
           <div class="actions form-group">

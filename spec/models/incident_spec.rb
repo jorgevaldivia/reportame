@@ -5,12 +5,23 @@ describe Incident do
   after(:all){ Incident.delete_all }
 
   describe "validations" do
-    let(:subject) { Incident.new(city: "Tyler") }
-    let(:valid_subject) { Incident.new(city: "Zapopan") }
-    before(:all)  { subject.save }
+    let(:subject)         { Incident.new(city: "Tyler") }
+    let(:valid_subject)   { Incident.new(city: "Zapopan") }
+    before(:all)          { subject.save }
+    before(:all)          { valid_subject.save }
 
-    it("should not allow tyler as a city")    { subject.errors.messages[:city].should include(I18n.t("errors.messages.inclusion")) }
-    it("should allow Zapopan as a city")      { valid_subject.errors.messages[:city].should be nil }
+    describe "valid" do
+      it("should allow Zapopan as a city")      { valid_subject.errors.messages[:city].should be nil }
+    end
+
+    describe "invalid" do
+      it("should not allow tyler as a city")    { subject.errors.messages[:city].should include(I18n.t("errors.messages.inclusion")) }
+      it("should require address_1")            { subject.errors.messages[:address_1].should include(I18n.t("errors.messages.blank")) }
+      it("should require description")          { subject.errors.messages[:description].should include(I18n.t("errors.messages.blank")) }
+      it("should require type")                 { subject.errors.messages[:incident_type].should include(I18n.t("errors.messages.blank")) }
+      it("should require occurred_at")          { subject.errors.messages[:ocured_at].should include(I18n.t("errors.messages.blank")) }
+    end
+
     it("should set state to Jalsico")         { subject.state.should eq "Jalisco" }
     it("should set country to Mexico")        { subject.country.should eq "Mexico" }
   end
