@@ -33,5 +33,12 @@ app.factory "Incident", ["$resource", ($resource) ->
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     main_map = new google.maps.Map(document.getElementById("main-map-canvas"), mapOptions);
+
+    google.maps.event.addDomListener(window, "resize", ->
+      center = main_map.getCenter();
+      google.maps.event.trigger(main_map, "resize");
+      main_map.setCenter(center); 
+    );
+
     $scope.map = main_map
 ]

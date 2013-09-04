@@ -8,7 +8,7 @@ class IncidentsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json{ render json: @incidents.to_json(methods: :full_address) }
+      format.json{ render json: @incidents.to_json(methods: [:full_address, :translated_type]) }
     end
   end
 

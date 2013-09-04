@@ -21,6 +21,16 @@
 
 en:
   hello: "Hello world"
-  app_name: "Reporta.me"
-  recent: Recent Incidents
+  app_name: "REPORTA.ME"
+  recent_incidents: Recent Incidents
   statistics: Statistics
+
+  activerecord:
+    models:
+      incident: Incident
+    attributes:
+      incident:
+        robbery: Robbery
+        assault: Asssault
+        auto_theft: Auto Theft
+        other: Other

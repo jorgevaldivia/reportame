@@ -59,7 +59,9 @@
       <div class="field form-group">
         <%= f.label :incident_type, class: "col-lg-2 control-label" %>
         <div class="col-lg-10">
-          <%= f.text_field :incident_type, class: "form-control" %>
+          <%= f.select :incident_type, 
+            options_for_select( Incident::TYPES.collect{ |x| [Incident.human_attribute_name(x), x ] } ),
+            {}, class: "form-control" %>
         </div>
       </div>
       <div class="field form-group">
@@ -70,7 +72,7 @@
       </div>
       <div class="actions form-group">
         <div class="col-lg-offset-2 col-lg-10">
-          <%= f.submit class: "btn btn-default" %>
+          <%= f.submit t("save"), class: "btn btn-default" %>
         </div>
       </div>
     <% end %>

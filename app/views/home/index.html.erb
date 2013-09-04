@@ -1,25 +1,84 @@
 <%= google_maps_include 					 %>
 <%= stylesheet_link_tag 		"maps" %>
 
-<div class="container">
-	<!-- Example row of columns -->
-  <div class="row">
-    <div class="col-lg-8">
-      <h2><%= t :recent_incidents %></h2>
-      <div ng-controller="IncidentCtrl">
-        <ul>
-          <li ng-repeat="incident in incidents">
-            <span class="glyphicon glyphicon-home"></span>
-            {{incident.full_address}}
-          </li>
-        </ul>
-      </div>
-    </div>
+<div id="main-map-canvas" class="hide"></div>
 
-    <div class="col-lg-4">
-      <h2><%= t :statistics %></h2>
-      <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-      <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
-    </div>
+<!-- <div class="container"> -->
+<section id="Section-1">
+  <div class="container">
+    <div class="row">
+      <!-- SERVICE SIDE-->
+      <div class="col-sm-7 col-lg-7">
+        <!-- INNER ROW-->
+        <h3 class="main-color"><%= t :recent_incidents %></h3>
+
+        <div ng-controller="IncidentCtrl">
+          <div class="about-box row" ng-repeat="incident in incidents">
+            <div class="col-sm-3 col-lg-3">
+              <div class="circ-wrap">
+                <i class="icon-beaker icon-4x"></i>
+              </div>
+            </div>
+            <div class="col-sm-8 col-lg-8">   
+              <h4><span>{{incident.translated_type}}</span></h4>
+              
+              <p class="">{{incident.full_address}}</p>
+              <p class="">{{incident.description}}</p>
+            </div>
+          </div>
+        </div>
+      </div><!--/SPAN7-->
+
+<!-- SKILLS BAR SIDE-->
+<div class="col-sm-5 col-lg-5">
+  
+  <h3 class="main-color"><%= t :statistics %></h3>
+  <!-- BAR ITEM-->
+  <h4>DESIGN</h4>
+    <div class="progress">
+            <div class="bar" style="width: 75%;"></div>
+        </div>
+  <!--/ BAR ITEM-->
+    
+  <!-- BAR ITEM-->
+  <h4>HTML5</h4>
+    <div class="progress">
+            <div class="bar bar-danger" style="width: 60%;"></div>
+        </div>
+  <!--/ BAR ITEM-->
+    
+  <!-- BAR ITEM-->
+  <h4>CSS3</h4>
+    <div class="progress">
+            <div class="bar bar-success" style="width: 55%;"></div>
+        </div>
+  <!--/ BAR ITEM-->
+    
+  <!-- BAR ITEM-->
+    <h4>JQUERY</h4>
+    <div class="progress">
+            <div class="bar bar-warning" style="width: 75%;"></div>
+        </div>
+  <!--/ BAR ITEM-->
+    
+  <!-- BAR ITEM-->
+    <h4>PHP</h4>
+    <div class="progress">
+            <div class="bar bar-info" style="width: 55%;"></div>
+        </div>
+  <!-- / BAR ITEM-->
+  
+  </div>
+<!--/ SKILLS BAR SIDE-->
 </div>
+
+
+
+
+
+
+
+  </div>
+</section>
+<!-- </div> -->
 

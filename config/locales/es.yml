@@ -1,0 +1,36 @@
+es:
+  hello: "Hello world"
+  app_name: "REPORTA.ME"
+  recent_incidents: "REPORTES RECIENTES"
+  statistics: "ESTADISTICAS"
+  save: Guardar
+
+  menu:
+    home: Inicio
+    report_incident: Reportar Incidente
+
+  date:
+    order:
+      - :day
+      - :month
+      - :year
+    month_names: [~, Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Deciembre]
+
+  activerecord:
+    models:
+      incident: Reporte
+    attributes:
+      incident:
+        robbery: Robo
+        assault: Asalto
+        auto_theft: Robo de Auto
+        other: Otro
+        address_1: Domicilio
+        address_2: Domicilio 2
+        city: Ciudad
+        state: Estado
+        zip: CP
+        country: Pais
+        incident_type: Tipo
+        description: Descripcion
+        occured_at: Occurio

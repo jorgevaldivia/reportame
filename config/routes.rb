@@ -2,6 +2,7 @@ Reportame::Application.routes.draw do
   resources :incidents
 
   get "home/index"
+  get "home/blank"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
