@@ -34,3 +34,7 @@ en:
         assault: Asssault
         auto_theft: Auto Theft
         other: Other
+
+  errors:
+    messages:
+      inclusion: "is not a valid entry"

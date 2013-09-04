@@ -1,9 +1,16 @@
 class Incident < ActiveRecord::Base
+	# encoding: utf-8
 
 	geocoded_by :full_address
 	after_validation :geocode, if: Proc.new{ full_address_changed? }
 
+	validates :city, inclusion: { in: Proc.new{ Incident.cities } }
+
 	TYPES = ["robbery", "assault", "auto_theft", "vandalism", "other"]
+
+	def self.cities
+		YAML.load(File.open "#{Rails.root}/config/cities.yml")["cities"]
+	end
 
 	def self.statistics
 		types 						= TYPES.collect { |v| [ IncidentType.new(id: v, name: Incident.translate_type(v), percentage: 0) ] }.flatten

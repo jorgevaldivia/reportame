@@ -204,10 +204,15 @@
 		width:100%;
 		min-width:100%;
 		padding-top:50px;
+		padding-top:0px;
 		padding-bottom:50px;
 		min-height:200px;
 		background:#292C37;
 		color:#fff;
+	  }
+
+	  footer .page-header{
+	  	padding-top: 0;
 	  }
 	  
 	  footer .circ-wrap{
@@ -283,6 +288,8 @@
 	
 	/* ICONS WRAPERS
 	===========================*/
+	
+
 	.circ-wrap{
 		width: 98px;
 		height: 98px;
@@ -295,6 +302,13 @@
 		-webkit-box-sizing:border-box;
 		-moz-box-sizing:border-box;
 		box-sizing:border-box;
+	}
+
+	.circ-wrap.circ-2x{
+		width: 49px;
+		height: 49px;
+		line-height: 47px;
+		padding-top:7px;
 	}
 	
 

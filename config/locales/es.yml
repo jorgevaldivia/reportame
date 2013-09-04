@@ -35,3 +35,6 @@ es:
         incident_type: Tipo
         description: Descripcion
         occured_at: Occurio
+errors:
+    messages:
+      inclusion: "no es valor aceptable"

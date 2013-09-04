@@ -1,6 +1,16 @@
 require 'spec_helper'
 
 describe Incident do
+
+  after(:all){ Incident.delete_all }
+
+  describe "validations" do
+    let(:subject) { Incident.new(city: "Tyler") }
+    before(:all)  { subject.save }
+
+    it("should not allow tyler as a city")    { subject.errors.messages[:city].should include(I18n.t("errors.messages.inclusion")) }
+  end
+
   describe "statistics" do
   	before :all do
   		4.times { FactoryGirl.create(:incident, incident_type: "robbery") }
@@ -8,7 +18,6 @@ describe Incident do
   		1.times { FactoryGirl.create(:incident, incident_type: "auto_theft") }
   		2.times { FactoryGirl.create(:incident, incident_type: "other") }
   	end
-  	after(:all){ Incident.delete_all }
 
   	let( :stats ) { Incident.statistics}
 
