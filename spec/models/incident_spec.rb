@@ -6,9 +6,10 @@ describe Incident do
 
   describe "validations" do
     let(:subject)         { Incident.new(city: "Tyler") }
-    let(:valid_subject)   { Incident.new(city: "Zapopan") }
+    let(:valid_subject)   { FactoryGirl.create(:incident) }
     before(:all)          { subject.save }
     before(:all)          { valid_subject.save }
+    after(:all)            { Incident.delete_all }
 
     describe "valid" do
       it("should allow Zapopan as a city")      { valid_subject.errors.messages[:city].should be nil }
@@ -19,7 +20,7 @@ describe Incident do
       it("should require address_1")            { subject.errors.messages[:address_1].should include(I18n.t("errors.messages.blank")) }
       it("should require description")          { subject.errors.messages[:description].should include(I18n.t("errors.messages.blank")) }
       it("should require type")                 { subject.errors.messages[:incident_type].should include(I18n.t("errors.messages.blank")) }
-      it("should require occurred_at")          { subject.errors.messages[:ocured_at].should include(I18n.t("errors.messages.blank")) }
+      it("should require occurred_at")          { subject.errors.messages[:occured_at].should include(I18n.t("errors.messages.blank")) }
     end
 
     it("should set state to Jalsico")         { subject.state.should eq "Jalisco" }
