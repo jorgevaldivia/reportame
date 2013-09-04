@@ -2,12 +2,12 @@
 <html ng-app="Reportame">
 <head>
   <title><%= t("app_name") %></title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => false %>
+  <%= stylesheet_link_tag    "application", media: "all" %>
   <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css" rel="stylesheet">
   <link href="/assets/style.css" rel="stylesheet">
   <link href="/assets/font-awesome.min.css" rel="stylesheet"> 
 
-  <%= javascript_include_tag "application", "data-turbolinks-track" => false %>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -28,8 +28,10 @@
       <!-- Place everything within .navbar-collapse to hide it until above 768px -->
       <div class="nav-collapse collapse navbar-responsive-collapse top-spy">
         <ul  class="nav navbar-nav pull-right ">
-          <li class="active"><a href="<%= root_path %>"><%= t("menu.home") %></a></li>
-          <li><a href="<%= new_incident_path %>"><span class="glyphicon glyphicon-plus-sign"></span> <%= t("menu.report_incident") %></a></li>
+          <li <%= "class=active" if controller.class == HomeController %>><a href="<%= root_path %>"><%= t("menu.home") %></a></li>
+          <li <%= 'class=active' if controller.class == IncidentsController %>>
+            <a href="<%= new_incident_path %>"><i class="icon-plus-sign icon-1x"></i> <%= t("menu.report_incident") %></a>
+          </li>
         </ul>
       </div>
     </div>
