@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby "1.9.3"
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
@@ -49,6 +51,11 @@ group :development, :test do
 	gem 'factory_girl_rails', '4.2.1'
 end
 
+group :production do
+	gem 'rails_12factor'
+end
+
 gem 'anjlab-bootstrap-rails', '>= 3.0.0.0', :require => 'bootstrap-rails'
 gem 'angularjs-rails'
 gem "geocoder"
+gem "pg"
