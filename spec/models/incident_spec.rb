@@ -6,9 +6,13 @@ describe Incident do
 
   describe "validations" do
     let(:subject) { Incident.new(city: "Tyler") }
+    let(:valid_subject) { Incident.new(city: "Zapopan") }
     before(:all)  { subject.save }
 
     it("should not allow tyler as a city")    { subject.errors.messages[:city].should include(I18n.t("errors.messages.inclusion")) }
+    it("should allow Zapopan as a city")      { valid_subject.errors.messages[:city].should be nil }
+    it("should set state to Jalsico")         { subject.state.should eq "Jalisco" }
+    it("should set country to Mexico")        { subject.country.should eq "Mexico" }
   end
 
   describe "statistics" do

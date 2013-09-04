@@ -30,30 +30,24 @@
             </div>
           </div>
           <div class="field form-group">
+            <%= f.label :colony, class: "col-lg-2 control-label" %>
+            <div class="col-lg-10">
+              <%= f.text_field :colony, class: "form-control" %>
+            </div>
+          </div>
+          <div class="field form-group">
             <%= f.label :city, class: "col-lg-2 control-label" %>
             <div class="col-lg-10">
               <%= f.select :city, options_for_select( Incident.cities.collect{ |x| [x, x] } ),
                 {}, class: "form-control" %>
             </div>
           </div>
-          <!-- <div class="field form-group">
-            <%= f.label :state, class: "col-lg-2 control-label" %>
-            <div class="col-lg-10">
-              <%= f.text_field :state, class: "form-control" %>
-            </div>
-          </div> -->
           <div class="field form-group">
             <%= f.label :zip, class: "col-lg-2 control-label" %>
             <div class="col-lg-10">
               <%= f.text_field :zip, class: "form-control" %>
             </div>
           </div>
-          <!-- <div class="field form-group">
-            <%= f.label :country, class: "col-lg-2 control-label" %>
-            <div class="col-lg-10">
-              <%= f.text_field :country, class: "form-control" %>
-            </div>
-          </div> -->
           <div class="field form-group">
             <%= f.label :description, class: "col-lg-2 control-label" %>
             <div class="col-lg-10">

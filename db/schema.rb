@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130903043139) do
+ActiveRecord::Schema.define(version: 20130904213959) do
 
   create_table "incidents", force: true do |t|
     t.string   "address_1"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20130903043139) do
     t.datetime "updated_at"
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "colony"
   end
 
 end

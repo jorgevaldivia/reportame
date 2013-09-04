@@ -35,6 +35,7 @@ es:
         incident_type: Tipo
         description: Descripcion
         occured_at: Occurio
+        colony: Colonia
 errors:
     messages:
       inclusion: "no es valor aceptable"

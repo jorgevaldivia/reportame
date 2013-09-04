@@ -1,8 +1,9 @@
 class Incident < ActiveRecord::Base
 	# encoding: utf-8
 
-	geocoded_by :full_address
-	after_validation :geocode, if: Proc.new{ full_address_changed? }
+	geocoded_by 				:full_address
+	after_validation 		:geocode, if: Proc.new{ full_address_changed? }
+	before_validation 	:set_constrained_address_values
 
 	validates :city, inclusion: { in: Proc.new{ Incident.cities } }
 
@@ -40,5 +41,10 @@ class Incident < ActiveRecord::Base
 
 	def self.translate_type type
 		I18n.t("activerecord.attributes.incident.#{type}")
+	end
+
+	def set_constrained_address_values
+		self.state 		= "Jalisco"
+		self.country 	= "Mexico"
 	end
 end
