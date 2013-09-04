@@ -4,6 +4,7 @@ es:
   recent_incidents: "REPORTES RECIENTES"
   statistics: "ESTADISTICAS"
   save: Guardar
+  errors_found: Habemus Errores
 
   menu:
     home: Inicio
@@ -34,10 +35,10 @@ es:
         zip: CP
         country: Pais
         incident_type: Tipo
-        description: Descripcion
+        description: Descripcíon
         occured_at: Occurio
         colony: Colonia
-errors:
-    messages:
-      inclusion: "no es valor aceptable"
-      blank: "es requerido"
+    errors:
+        messages:
+          inclusion: "no es valor aceptable"
+          blank: "es campo requerido"

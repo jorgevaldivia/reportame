@@ -24,6 +24,8 @@ en:
   app_name: "REPORTA.ME"
   recent_incidents: Recent Incidents
   statistics: Statistics
+  save: Save
+  errors_found: Habemos Errores
 
   activerecord:
     models:

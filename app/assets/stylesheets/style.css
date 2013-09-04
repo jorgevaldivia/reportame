@@ -667,3 +667,13 @@ font-size: 40px;
 		color:#fff;
 		font-size:60%;
 	}
+	.field_with_errors input, .field_with_errors textarea {
+	  box-shadow: 0 0 5px #b94a48;
+	  padding: 3px 0px 3px 3px;
+	  margin: 5px 1px 3px 0px;
+	  border: 1px solid #b94a48;
+	}
+
+	.field_with_errors .control-label{
+	  color: #b94a48;
+	}
