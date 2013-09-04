@@ -11,7 +11,7 @@ class Incident < ActiveRecord::Base
 		total_incidents 	= incidents.map(&:count).sum
 
 		incidents.each do | incident |
-			types.detect{ |x| x.id == incident.incident_type }.percentage = ((incident.count / total_incidents.to_f) * 100).to_i
+			types.detect{ |x| x.id == incident.incident_type }.percentage = ((incident.count / total_incidents.to_f) * 100).round.to_i
 		end
 
 		types.to_a

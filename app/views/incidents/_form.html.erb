@@ -1,80 +1,85 @@
-<div class="row">
-  <div class="col-md-8">
+<section id="Section-5">
+  <div class="container">
 
-    <%= form_for(@incident, html: {class: "form-horizontal", role: "form"}) do |f| %>
-      <% if @incident.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@incident.errors.count, "error") %> prohibited this incident from being saved:</h2>
+    <div class="row">
+      <div class="col-sm-7 col-lg-7">
 
-          <ul>
-          <% @incident.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
+        <%= form_for(@incident, html: {class: "form-horizontal", role: "form"}) do |f| %>
+          <% if @incident.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@incident.errors.count, "error") %> prohibited this incident from being saved:</h2>
+
+              <ul>
+              <% @incident.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+              </ul>
+            </div>
           <% end %>
-          </ul>
-        </div>
-      <% end %>
 
-      <div class="field form-group">
-        <%= f.label :address_1, class: "col-lg-2 control-label" %>
-        <div class="col-lg-10">
-          <%= f.text_field :address_1, class: "form-control" %>
-        </div>
+          <div class="field form-group">
+            <%= f.label :address_1, class: "col-lg-2 control-label" %>
+            <div class="col-lg-10">
+              <%= f.text_field :address_1, class: "form-control" %>
+            </div>
+          </div>
+          <div class="field form-group">
+            <%= f.label :address_2, class: "col-lg-2 control-label" %>
+            <div class="col-lg-10">
+              <%= f.text_field :address_2, class: "form-control" %>
+            </div>
+          </div>
+          <div class="field form-group">
+            <%= f.label :city, class: "col-lg-2 control-label" %>
+            <div class="col-lg-10">
+              <%= f.text_field :city, class: "form-control" %>
+            </div>
+          </div>
+          <div class="field form-group">
+            <%= f.label :state, class: "col-lg-2 control-label" %>
+            <div class="col-lg-10">
+              <%= f.text_field :state, class: "form-control" %>
+            </div>
+          </div>
+          <div class="field form-group">
+            <%= f.label :zip, class: "col-lg-2 control-label" %>
+            <div class="col-lg-10">
+              <%= f.text_field :zip, class: "form-control" %>
+            </div>
+          </div>
+          <div class="field form-group">
+            <%= f.label :country, class: "col-lg-2 control-label" %>
+            <div class="col-lg-10">
+              <%= f.text_field :country, class: "form-control" %>
+            </div>
+          </div>
+          <div class="field form-group">
+            <%= f.label :description, class: "col-lg-2 control-label" %>
+            <div class="col-lg-10">
+              <%= f.text_area :description, class: "form-control" %>
+            </div>
+          </div>
+          <div class="field form-group">
+            <%= f.label :incident_type, class: "col-lg-2 control-label" %>
+            <div class="col-lg-10">
+              <%= f.select :incident_type, 
+                options_for_select( Incident::TYPES.collect{ |x| [Incident.human_attribute_name(x), x ] } ),
+                {}, class: "form-control" %>
+            </div>
+          </div>
+          <div class="field form-group">
+            <%= f.label :occured_at, class: "col-lg-2 control-label" %>
+            <div class="col-lg-10">
+              <%= f.datetime_select :occured_at %>
+            </div>
+          </div>
+          <div class="actions form-group">
+            <div class="col-sm-offset-7 col-lg-7">
+              <%= f.submit t("save"), class: "btn btn-default" %>
+            </div>
+          </div>
+        <% end %>
       </div>
-      <div class="field form-group">
-        <%= f.label :address_2, class: "col-lg-2 control-label" %>
-        <div class="col-lg-10">
-          <%= f.text_field :address_2, class: "form-control" %>
-        </div>
-      </div>
-      <div class="field form-group">
-        <%= f.label :city, class: "col-lg-2 control-label" %>
-        <div class="col-lg-10">
-          <%= f.text_field :city, class: "form-control" %>
-        </div>
-      </div>
-      <div class="field form-group">
-        <%= f.label :state, class: "col-lg-2 control-label" %>
-        <div class="col-lg-10">
-          <%= f.text_field :state, class: "form-control" %>
-        </div>
-      </div>
-      <div class="field form-group">
-        <%= f.label :zip, class: "col-lg-2 control-label" %>
-        <div class="col-lg-10">
-          <%= f.text_field :zip, class: "form-control" %>
-        </div>
-      </div>
-      <div class="field form-group">
-        <%= f.label :country, class: "col-lg-2 control-label" %>
-        <div class="col-lg-10">
-          <%= f.text_field :country, class: "form-control" %>
-        </div>
-      </div>
-      <div class="field form-group">
-        <%= f.label :description, class: "col-lg-2 control-label" %>
-        <div class="col-lg-10">
-          <%= f.text_area :description, class: "form-control" %>
-        </div>
-      </div>
-      <div class="field form-group">
-        <%= f.label :incident_type, class: "col-lg-2 control-label" %>
-        <div class="col-lg-10">
-          <%= f.select :incident_type, 
-            options_for_select( Incident::TYPES.collect{ |x| [Incident.human_attribute_name(x), x ] } ),
-            {}, class: "form-control" %>
-        </div>
-      </div>
-      <div class="field form-group">
-        <%= f.label :occured_at, class: "col-lg-2 control-label" %>
-        <div class="col-lg-10">
-          <%= f.datetime_select :occured_at %>
-        </div>
-      </div>
-      <div class="actions form-group">
-        <div class="col-lg-offset-2 col-lg-10">
-          <%= f.submit t("save"), class: "btn btn-default" %>
-        </div>
-      </div>
-    <% end %>
+    </div>
   </div>
-</div>
+</section>

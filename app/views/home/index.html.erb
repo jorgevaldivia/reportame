@@ -36,7 +36,7 @@
         <div ng-controller="IncidentTypeCtrl">
           <div ng-repeat="incident_type in incident_types">
             <!-- BAR ITEM-->
-            <h4>{{incident_type.name}}</h4>
+            <h4>{{incident_type.name}} {{incident_type.percentage}}%</h4>
             <div class="progress">
               <div class="bar" style="width: {{incident_type.percentage}}%;"></div>
             </div>
