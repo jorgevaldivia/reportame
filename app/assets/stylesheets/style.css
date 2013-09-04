@@ -649,3 +649,7 @@ font-size: 40px;
 		}
 
 	}
+	small.beta{
+		color:#fff;
+		font-size:60%;
+	}
