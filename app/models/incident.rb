@@ -61,16 +61,14 @@ class Incident < ActiveRecord::Base
 	end
 
 	def perform_geocode
-		puts "\n***** #{latitude.present? && longitude.present?} -- #{self.full_address.inspect}\n"
 		if latitude.present? && longitude.present?
 			self.reverse_geocode
 		elsif self.full_address.present?
-			# self.geocode
+			self.geocode
 		end
 	end
 
 	def within_bounds
-		puts "\n******* Geocoder::Calculations.distance_between(#{[20.6667, -103.3503]}, #{[self.latitude, self.longitude]})"
 		if Geocoder::Calculations.distance_between([20.6667, -103.3503], [self.latitude, self.longitude]) > 20
 			self.errors.add(:base, :not_within_bounds)
 		end
