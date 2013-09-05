@@ -1,12 +1,23 @@
 class Incident < ActiveRecord::Base
 	# encoding: utf-8
 
-	geocoded_by 				:full_address
-	after_validation 		:geocode, if: Proc.new{ full_address_changed? }
-	before_validation 	:set_constrained_address_values
+	geocoded_by 					:full_address
+	reverse_geocoded_by 	:latitude, :longitude do |obj, results|
+    if geo = results.first
+      obj.address_1   	= geo.street_address
+      obj.neighborhood	= geo.neighborhood
+      obj.city    			= geo.city
+      obj.zip 					= geo.postal_code
+      obj.state 				= geo.state
+      obj.country 			= geo.country_code
+    end
+  end
 
+  before_validation		:perform_geocode, on: :create
+	before_validation 	:set_constrained_address_values
+	validate 						:within_bounds
 	validates 					:city, inclusion: { in: Proc.new{ Incident.cities } }
-	validates 					:address_1, :description, :incident_type, :occured_at, presence: true
+	validates 					:description, :incident_type, :occured_at, presence: true
 
 	TYPES 							= ["robbery", "assault", "auto_theft", "vandalism", "violence", "other"]
 
@@ -47,5 +58,21 @@ class Incident < ActiveRecord::Base
 	def set_constrained_address_values
 		self.state 		= "Jalisco"
 		self.country 	= "Mexico"
+	end
+
+	def perform_geocode
+		puts "\n***** #{latitude.present? && longitude.present?} -- #{self.full_address.inspect}\n"
+		if latitude.present? && longitude.present?
+			self.reverse_geocode
+		elsif self.full_address.present?
+			# self.geocode
+		end
+	end
+
+	def within_bounds
+		puts "\n******* Geocoder::Calculations.distance_between(#{[20.6667, -103.3503]}, #{[self.latitude, self.longitude]})"
+		if Geocoder::Calculations.distance_between([20.6667, -103.3503], [self.latitude, self.longitude]) > 20
+			self.errors.add(:base, :not_within_bounds)
+		end
 	end
 end

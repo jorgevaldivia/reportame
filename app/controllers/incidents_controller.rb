@@ -74,6 +74,7 @@ class IncidentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def incident_params
-      params.require(:incident).permit(:address_1, :address_2, :city, :state, :zip, :country, :description, :incident_type, :occured_at)
+      params.require(:incident).permit(:address_1, :address_2, :city, :state, :zip, 
+        :country, :description, :incident_type, :occured_at, :neighborhood, :latitude, :longitude)
     end
 end

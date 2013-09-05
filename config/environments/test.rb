@@ -35,4 +35,6 @@ Reportame::Application.configure do
   config.active_support.deprecation = :stderr
 
   config.i18n.default_locale = :en
+  config.i18n.fallbacks =[:en]
+
 end

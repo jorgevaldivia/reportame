@@ -37,8 +37,9 @@ es:
         incident_type: Tipo
         description: Descripcíon
         occured_at: Occurio
-        colony: Colonia
+        neighborhood: Colonia
     errors:
         messages:
           inclusion: "no es valor aceptable"
           blank: "es campo requerido"
+          not_within_bounds: "Lo sentimos, pero ahorita solo se permiten reportes en el area de Guadalajara"

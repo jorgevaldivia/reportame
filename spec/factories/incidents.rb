@@ -11,5 +11,7 @@ FactoryGirl.define do
     description     "Me robaron el estacionamiento"
     incident_type   "robbery"
     occured_at      "2013-09-03 22:31:41"
+    latitude        20.6711852
+    longitude       -103.3628912
   end
 end

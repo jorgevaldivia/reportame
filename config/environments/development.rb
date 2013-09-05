@@ -27,5 +27,6 @@ Reportame::Application.configure do
   # number of complex assets.
   config.assets.debug = true
   config.i18n.fallbacks = true
+  config.assets.logger = nil
   
 end

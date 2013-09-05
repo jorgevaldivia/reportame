@@ -1,3 +1,23 @@
+<script>
+function getLocation(){
+  if (navigator.geolocation)
+    navigator.geolocation.getCurrentPosition(showPosition);
+  else{
+    x.innerHTML="Geolocation is not supported by this browser.";
+  }
+}
+function showPosition(position){
+  $("#incident_latitude").val(position.coords.latitude);
+  $("#incident_longitude").val(position.coords.longitude);
+}
+
+$(document).ready(function(){
+  getLocation();
+});
+</script>
+
+
+
 <section id="Section-5">
   <div class="container">
 
@@ -34,9 +54,9 @@
             </div>
           </div>
           <div class="field form-group">
-            <%= f.label :colony, class: "col-lg-2 control-label" %>
+            <%= f.label :neighborhood, class: "col-lg-2 control-label" %>
             <div class="col-lg-10">
-              <%= f.text_field :colony, class: "form-control" %>
+              <%= f.text_field :neighborhood, class: "form-control" %>
             </div>
           </div>
           <div class="field form-group">
@@ -50,6 +70,18 @@
             <%= f.label :zip, class: "col-lg-2 control-label" %>
             <div class="col-lg-10">
               <%= f.text_field :zip, class: "form-control" %>
+            </div>
+          </div>
+          <div class="field form-group">
+            <%= f.label :latitude, class: "col-lg-2 control-label" %>
+            <div class="col-lg-10">
+              <%= f.text_field :latitude, class: "form-control" %>
+            </div>
+          </div>
+          <div class="field form-group">
+            <%= f.label :longitude, class: "col-lg-2 control-label" %>
+            <div class="col-lg-10">
+              <%= f.text_field :longitude, class: "form-control" %>
             </div>
           </div>
           <div class="field form-group">
