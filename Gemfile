@@ -56,3 +56,4 @@ gem 'anjlab-bootstrap-rails', '>= 3.0.0.0', :require => 'bootstrap-rails'
 gem 'angularjs-rails'
 gem "geocoder"
 gem "pg"
+gem 'newrelic_rpm'
