@@ -6,3 +6,12 @@
 
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+
+  <meta property="og:title" content="<%= t :social_title %>" /> 
+  <meta property="og:description" content="<%= t :social_description %>" /> 
+
+  <meta name="twitter:card" content="<%= t :social_title %>" />
+	<meta name="twitter:title" content="<%= t :social_title %>" />
+	<meta name="twitter:description" content="<%= t :social_description %>" />
+
+	<meta name="description" content="<%= t :social_description %>" />

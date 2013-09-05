@@ -25,7 +25,8 @@ en:
   recent_incidents: Recent Incidents
   statistics: Statistics
   save: Save
-  errors_found: Habemos Errores
+  errors_found: Errors prevented this report from being added
+  share: Share
 
   activerecord:
     models:
