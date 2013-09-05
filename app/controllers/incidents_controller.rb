@@ -6,7 +6,7 @@ class IncidentsController < ApplicationController
   # GET /incidents
   # GET /incidents.json
   def index
-    @incidents = Incident.all
+    @incidents = Incident.order("id desc").all
 
     respond_to do |format|
       format.html
