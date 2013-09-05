@@ -36,6 +36,8 @@ en:
         assault: Asssault
         auto_theft: Auto Theft
         other: Other
+        manual_entry: Manual
+        gps_entry: From GPS
     errors:
       messages:
         inclusion: "is not a valid entry"

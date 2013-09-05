@@ -1,6 +1,8 @@
 class IncidentsController < ApplicationController
   before_action :set_incident, only: [:show, :edit, :update, :destroy]
 
+  # layout "mobile.html.erb"
+
   # GET /incidents
   # GET /incidents.json
   def index

@@ -1,0 +1,28 @@
+  <!-- NAV-->
+  <div id="topnav" class="navbar <%= 'navbar-fixed-top' unless mobile_device? %>">
+  <!-- <div id="topnav" class="navbar navbar-fixed-top"> -->
+    <div class="container">
+      <!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    
+      <a class="navbar-brand" href="<%= root_path %>">
+        <i class="icon-eye-open icon-x3"></i>
+        &nbsp;<%= t("app_name") %>&nbsp;<small class="beta">beta</small>
+      </a>
+       
+      <!-- Place everything within .navbar-collapse to hide it until above 768px -->
+      <div class="nav-collapse collapse navbar-responsive-collapse top-spy">
+        <ul  class="nav navbar-nav pull-right ">
+          <li <%= "class=active" if controller.class == HomeController %>><a href="<%= root_path %>"><%= t("menu.home") %></a></li>
+          <li <%= 'class=active' if controller.class == IncidentsController %>>
+            <a href="<%= new_incident_path %>"><i class="icon-plus-sign icon-1x"></i> <%= t("menu.report_incident") %></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- /NAV -->

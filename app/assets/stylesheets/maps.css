@@ -2,3 +2,7 @@
 	height: 400px; 
 	margin-top:30px;
 }
+
+body.mobile #main-map-canvas { 
+	margin-top:0px;
+}

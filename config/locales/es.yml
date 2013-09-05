@@ -28,6 +28,8 @@ es:
         vandalism: Vandalismo
         violence: Violencia
         other: Otro
+        manual_entry: Entrar Manual
+        gps_entry: Usar GPS
         address_1: Domicilio
         address_2: Domicilio 2
         city: Ciudad
@@ -36,8 +38,10 @@ es:
         country: Pais
         incident_type: Tipo
         description: Descripcíon
-        occured_at: Occurio
+        occured_at: Ocurrio
         neighborhood: Colonia
+        latitude: Latitud
+        longitude: Longitud
     errors:
         messages:
           inclusion: "no es valor aceptable"

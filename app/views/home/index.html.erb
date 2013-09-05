@@ -13,7 +13,7 @@
         <h3 class="main-color"><%= t :recent_incidents %></h3>
 
         <div ng-controller="IncidentCtrl">
-          <div class="about-box row" ng-repeat="incident in incidents">
+          <div class="about-box row" ng-repeat="incident in incidents | limitTo:4">
             <div class="col-sm-3 col-lg-3">
               <div class="circ-wrap">
                 <i class="icon-exclamation icon-4x"></i>
