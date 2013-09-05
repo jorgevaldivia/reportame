@@ -25,17 +25,13 @@ app.factory "Incident", ["$resource", ($resource) ->
         title: incident.translated_type
       });
 
-      content_string = "<div class='about-box dark map'>" +
+      content_string = "<div class='about-box dark map' id='info-window-content'>" +
       '<h4><span><i class="icon-info-sign icon-1x"></i>&nbsp;' + incident.translated_type + '<span></h4>' +
       '<div>' +
       '<p>' + incident.full_address + '</p>' +
       '<p>' + incident.description + '</p>' +
       '</div>' +
       '</div>'
-
-      # google.maps.event.addListener(marker, 'click', ->
-      #   infowindow.open($scope.map, marker);
-      # );
 
       google.maps.event.addListener(marker, 'click', ->
          infowindow.setContent content_string
