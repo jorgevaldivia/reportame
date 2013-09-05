@@ -13,13 +13,13 @@ class Incident < ActiveRecord::Base
     end
   end
 
-  before_validation		:perform_geocode, on: :create
-	before_validation 	:set_constrained_address_values
-	validate 						:within_bounds
-	validates 					:city, inclusion: { in: Proc.new{ Incident.cities } }
-	validates 					:description, :incident_type, :occured_at, presence: true
+  before_validation			:perform_geocode, on: :create
+	before_validation 		:set_constrained_address_values
+	validate 							:within_bounds
+	validates 						:city, inclusion: { in: Proc.new{ Incident.cities } }
+	validates 						:incident_type, :description, :occured_at, presence: true
 
-	TYPES 							= ["robbery", "assault", "auto_theft", "vandalism", "violence", "other"]
+	TYPES 								= ["robbery", "assault", "auto_theft", "vandalism", "violence", "other"]
 
 	def self.cities
 		YAML.load(File.open "#{Rails.root}/config/cities.yml")["cities"]
