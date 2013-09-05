@@ -1,38 +1,5 @@
-<script>
-function getLocation(){
-  if (navigator.geolocation)
-    navigator.geolocation.getCurrentPosition(showPosition);
-  else{
-    x.innerHTML="Geolocation is not supported by this browser.";
-  }
-}
-function showPosition(position){
-  $("#incident_latitude").val(position.coords.latitude);
-  $("#incident_longitude").val(position.coords.longitude);
-}
+<script type="text/javascript">
 
-$(document).ready(function(){
-  entry_tabs();
-  $("#gps-link").click(function(){ getLocation(); });
-
-  if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-    $("#gps-link").trigger("click");
-  }
-});
-
-function entry_tabs(){
-  $("#entry-tab a").click(function(e){
-    var tab       = $(this);
-    var li        = tab.parent();
-    var content   = $(tab.attr("href"));
-
-    e.preventDefault();
-    $("#entry-tab li").removeClass("active");
-    li.addClass("active");
-    content.parent().find(".tab-pane").removeClass("active");
-    content.addClass("active");
-  });
-}
 </script>
 
 

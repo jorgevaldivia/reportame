@@ -50,3 +50,35 @@ app.factory "IncidentType", ["$resource", ($resource) ->
 @IncidentTypeCtrl = ["$scope", "IncidentType", ($scope, IncidentType) ->
   $scope.incident_types = IncidentType.query()
 ]
+
+
+getLocation = ->
+  if (navigator.geolocation)
+    navigator.geolocation.getCurrentPosition(showPosition);
+
+showPosition = (position) ->
+  $("#incident_latitude").val(position.coords.latitude);
+  $("#incident_longitude").val(position.coords.longitude);
+
+$(document).ready( ->
+  entry_tabs();
+  $("#gps-link").click( ->
+    getLocation();
+  )
+
+  if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )
+    $("#gps-link").trigger("click");
+);
+
+entry_tabs = ->
+  $("#entry-tab a").click((e) ->
+    tab       = $(this);
+    li        = tab.parent();
+    content   = $(tab.attr("href"));
+
+    e.preventDefault();
+    $("#entry-tab li").removeClass("active");
+    li.addClass("active");
+    content.parent().find(".tab-pane").removeClass("active");
+    content.addClass("active");
+  );
