@@ -63,7 +63,8 @@ showPosition = (position) ->
 $(document).ready( ->
   entry_tabs();
   $("#gps-link").click( ->
-    getLocation();
+    if !$("#incident_latitude").val() && !$("#incident_longitude").val()
+      getLocation()
   )
 
   if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )
