@@ -211,6 +211,10 @@
 			border-color:#333333;
 	  }
 
+	  .about-box.map{
+	  	width: 400px;
+	  }
+
 	  /* FOOTER
 	  ================================*/
 	    footer{

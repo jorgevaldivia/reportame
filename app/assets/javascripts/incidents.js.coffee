@@ -16,7 +16,7 @@ app.factory "Incident", ["$resource", ($resource) ->
   )
 
   $scope.setMarkers = ->
-    infowindow = new google.maps.InfoWindow({content: ""})
+    infowindow = new google.maps.InfoWindow({content: "", maxWidth: 450})
 
     angular.forEach $scope.incidents, (incident) ->
       marker = new google.maps.Marker({
@@ -25,7 +25,7 @@ app.factory "Incident", ["$resource", ($resource) ->
         title: incident.translated_type
       });
 
-      content_string = "<div class='about-box dark zzz'>" +
+      content_string = "<div class='about-box dark map'>" +
       '<h4><span><i class="icon-info-sign icon-1x"></i>&nbsp;' + incident.translated_type + '<span></h4>' +
       '<div>' +
       '<p>' + incident.full_address + '</p>' +
