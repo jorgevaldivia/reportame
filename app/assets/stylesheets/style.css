@@ -199,7 +199,18 @@
 		border-bottom:2px solid #fff;
 		display:inline-block;
 	  }
-	  
+
+	  .about-box.dark{
+	  	color: #333333;
+	  }
+
+	  .about-box.dark h3,
+	  .about-box.dark h4,
+	  .about-box.dark h3 span,
+	  .about-box.dark h4 span{
+			border-color:#333333;
+	  }
+
 	  /* FOOTER
 	  ================================*/
 	    footer{

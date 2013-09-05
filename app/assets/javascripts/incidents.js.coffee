@@ -16,14 +16,32 @@ app.factory "Incident", ["$resource", ($resource) ->
   )
 
   $scope.setMarkers = ->
+    infowindow = new google.maps.InfoWindow({content: ""})
+
     angular.forEach $scope.incidents, (incident) ->
       marker = new google.maps.Marker({
         position: new google.maps.LatLng(incident.latitude, incident.longitude),
         map: $scope.map,
-        title: incident.incident_type
+        title: incident.translated_type
       });
-      
-      
+
+      content_string = "<div class='about-box dark zzz'>" +
+      '<h4><span><i class="icon-info-sign icon-1x"></i>&nbsp;' + incident.translated_type + '<span></h4>' +
+      '<div>' +
+      '<p>' + incident.full_address + '</p>' +
+      '<p>' + incident.description + '</p>' +
+      '</div>' +
+      '</div>'
+
+      # google.maps.event.addListener(marker, 'click', ->
+      #   infowindow.open($scope.map, marker);
+      # );
+
+      google.maps.event.addListener(marker, 'click', ->
+         infowindow.setContent content_string
+         infowindow.open $scope.map, marker
+      );
+
   $scope.createMap = ->
     $("#main-map-canvas").removeClass("hide");
 
