@@ -97,7 +97,7 @@ function entry_tabs(){
                     <%= f.label :city, class: "col-lg-2 control-label" %>
                     <div class="col-lg-10">
                       <%= f.select :city, options_for_select( Incident.cities.collect{ |x| [x, x] } ),
-                        {}, class: "form-control" %>
+                        {prompt: true}, class: "form-control" %>
                     </div>
                   </div>
                   <div class="field form-group">
