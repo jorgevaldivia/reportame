@@ -17,6 +17,10 @@ es:
       - :year
     month_names: [~, Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Deciembre]
 
+  helpers:
+    select:
+      prompt: Seleccione Valor
+
   activerecord:
     models:
       incident: Reporte

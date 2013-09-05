@@ -130,7 +130,7 @@ function entry_tabs(){
                 <div class="col-lg-10">
                   <%= f.select :incident_type, 
                     options_for_select( Incident::TYPES.collect{ |x| [Incident.human_attribute_name(x), x ] } ),
-                    {}, class: "form-control" %>
+                    {prompt: true}, class: "form-control" %>
                 </div>
               </div>
               <div class="field form-group">
