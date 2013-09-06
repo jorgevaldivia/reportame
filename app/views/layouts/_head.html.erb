@@ -6,7 +6,7 @@
 
   <%= javascript_include_tag "application" %>
 
-  <%= render(patial: "layouts/google_analytics") if Rails.env.production? %>
+  <%= render(partial: "layouts/google_analytics") if Rails.env.production? %>
   <%= csrf_meta_tags %>
 
 	<meta property="og:title" content="<%= t :social_title %>" /> 
