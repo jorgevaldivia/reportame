@@ -54,6 +54,8 @@ app.factory "Incident", ["$resource", ($resource) ->
       main_map.setCenter(center); 
     );
 
+    # alert("y");
+
     $scope.map = main_map
 ]
 

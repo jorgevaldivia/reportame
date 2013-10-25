@@ -18,11 +18,11 @@ function initialize_main_map() {
 }
 
 // Resize stuff...
-google.maps.event.addDomListener(window, "resize", function() {
-	var center = main_map.getCenter();
-	google.maps.event.trigger(main_map, "resize");
-	main_map.setCenter(center); 
-});
+// google.maps.event.addDomListener(window, "resize", function() {
+// 	var center = main_map.getCenter();
+// 	google.maps.event.trigger(main_map, "resize");
+// 	main_map.setCenter(center); 
+// });
 
 $(document).ready(function(){
 	initialize_main_map();

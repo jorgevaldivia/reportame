@@ -26,12 +26,14 @@ class Incident < ActiveRecord::Base
 	end
 
 	def self.statistics
-		types 						= TYPES.collect { |v| [ IncidentType.new(id: v, name: Incident.translate_type(v), percentage: 0) ] }.flatten
+		types 						= TYPES.collect { |v| 
+			[ IncidentType.new(id: v, name: Incident.translate_type(v, true), percentage: 0, total: 0) ] }.flatten
 		incidents 				= Incident.select("incident_type, count(*) as count").where("incident_type is not null").group("incident_type")
 		total_incidents 	= incidents.map(&:count).sum
 
 		incidents.each do | incident |
 			types.detect{ |x| x.id == incident.incident_type }.percentage = ((incident.count / total_incidents.to_f) * 100).round.to_i
+			types.detect{ |x| x.id == incident.incident_type }.total 			= incident.count
 		end
 
 		types.to_a
@@ -51,8 +53,9 @@ class Incident < ActiveRecord::Base
 		address_1_changed? || address_2_changed? || city_changed? || state_changed? || zip_changed? || country_changed?
 	end
 
-	def self.translate_type type
-		I18n.t("activerecord.attributes.incident.#{type}")
+	def self.translate_type type, plural=false
+		count = plural ? "other" : "one"
+		I18n.t("activerecord.attributes.incident.#{type}.#{count}")
 	end
 
 	def set_constrained_address_values

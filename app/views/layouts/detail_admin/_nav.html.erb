@@ -1,0 +1,47 @@
+    <!-- navbar -->
+    <header class="navbar navbar-inverse" role="banner">
+	    <div class="navbar-header">
+        <button class="navbar-toggle" type="button" data-toggle="collapse" id="menu-toggler">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="<%= root_url %>">
+          <i class="icon-eye-open"></i>&nbsp;
+          <%= t("app_name") %>&nbsp;
+          <small class="beta">beta</small>
+        </a>
+	    </div>
+    </header>
+    <!-- end navbar -->
+
+    <!-- sidebar -->
+    <div id="sidebar-nav">
+      <ul id="dashboard-menu">
+        <li <%= "class=active" if controller.class == HomeController %>>
+          <!-- <div class="pointer">
+            <div class="arrow"></div>
+            <div class="arrow_border"></div>
+          </div> -->
+          <a href="<%= root_path %>">
+            <i class="icon-home"></i>
+            <span><%= t("menu.home") %></span>
+          </a>
+        </li>            
+        <li <%= 'class=active' if controller.class == IncidentsController %>>
+          <a href="<%= new_incident_path %>">
+            <i class="icon-plus"></i>
+            <span><%= t("menu.report_incident") %></span>
+          </a>
+        </li>
+
+        <li <%= 'class=active' if controller.class == IncidentsController %>>
+          <a href="<%= incidents_path %>">
+            <i class="icon-signal"></i>
+            <span><%= t(Incident.model_name.human(count: 2)) %></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- end sidebar -->

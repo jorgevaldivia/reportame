@@ -1,6 +1,6 @@
 es:
   hello: "Hello world"
-  app_name: "REPORTA.ME"
+  app_name: "Reporta.me"
   recent_incidents: "REPORTES RECIENTES"
   statistics: "ESTADISTICAS"
   save: Guardar
@@ -11,7 +11,7 @@ es:
 
   menu:
     home: Inicio
-    report_incident: Reportar Incidente
+    report_incident: Reportar
 
   date:
     order:
@@ -26,15 +26,29 @@ es:
 
   activerecord:
     models:
-      incident: Reporte
+      incident:
+        one: Reporte
+        other: Reportes
     attributes:
       incident:
-        robbery: Robo
-        assault: Asalto
-        auto_theft: Robo de Auto
-        vandalism: Vandalismo
-        violence: Violencia
-        other: Otro
+        robbery:
+          one: Robo
+          other: Robos
+        assault:
+          one: Asalto
+          other: Asaltos
+        auto_theft:
+          one: Robo de Auto
+          other: Robos de Auto
+        vandalism:
+          one: Vandalismo
+          other: Vandalismos
+        violence:
+          one: Violencia
+          other: Violencia
+        other:
+          one: Otro
+          other: Otro
         manual_entry: Entrar Manual
         gps_entry: Usar GPS
         address_1: Domicilio
@@ -49,6 +63,7 @@ es:
         neighborhood: Colonia
         latitude: Latitud
         longitude: Longitud
+        full_address: Ubicacion
     errors:
         messages:
           inclusion: "no es valor aceptable"

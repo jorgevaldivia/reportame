@@ -21,5 +21,13 @@ module Reportame
     config.i18n.default_locale = :es
     config.i18n.fallbacks =[:es, :en]
     config.time_zone = 'Central Time (US & Canada)'
+
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance|
+      unless html_tag =~ /^<label/
+          "<div class=\"field_with_errors\">#{html_tag}<span class='alert-msg' style='display: block'><i class='icon-remove-sign'></i> #{instance.error_message.first.capitalize}</span></div>".html_safe
+      else
+          "<div class=\"field_with_errors\"><span class='alert-msg'>#{html_tag}</span></div>".html_safe
+      end
+    }
   end
 end

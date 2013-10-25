@@ -1,53 +1,66 @@
-<%= google_maps_include 					 %>
-<%= stylesheet_link_tag 		"maps" %>
+<%= google_maps_include            %>
+<%= stylesheet_link_tag     "maps" %>
 
-<div id="main-map-canvas" class="hide"></div>
+<div>
+  <!-- upper main stats -->
+  <div id="main-stats" ng-controller="IncidentTypeCtrl">
+    <div class="row stats-row">
 
-<!-- <div class="container"> -->
-<section id="Section-1">
-  <div class="container">
-    <div class="row">
-      <!-- SERVICE SIDE-->
-      <div class="col-sm-7 col-lg-7">
-        <!-- INNER ROW-->
-        <h3 class="main-color"><%= t :recent_incidents %></h3>
+    
+      <div ng-repeat="incident_type in incident_types | orderBy:'total':true | limitTo:4">
 
-        <div ng-controller="IncidentCtrl">
-          <div class="about-box row" ng-repeat="incident in incidents | limitTo:4">
-            <div class="col-sm-3 col-lg-3">
-              <div class="circ-wrap">
-                <i class="icon-exclamation icon-4x"></i>
-              </div>
-            </div>
-            <div class="col-sm-8 col-lg-8">   
-              <h4><span>{{incident.translated_type}}</span></h4>
-              
-              <p class="">{{incident.full_address}}</p>
-              <p class="">{{incident.description}}</p>
-            </div>
+        <div class="col-md-3 col-sm-3 stat">
+          <div class="data">
+            <span class="number">{{incident_type.total}}</span>
+            {{incident_type.name}}
           </div>
+          <!-- <span class="date">Today</span> -->
         </div>
-      </div><!--/SPAN7-->
 
-      <!-- SKILLS BAR SIDE-->
-      <div class="col-sm-5 col-lg-5">
-        <h3 class="main-color"><%= t :statistics %></h3>
-
-        <div ng-controller="IncidentTypeCtrl">
-          <div ng-repeat="incident_type in incident_types">
-            <!-- BAR ITEM-->
-            <h4>{{incident_type.name}} {{incident_type.percentage}}%</h4>
-            <div class="progress">
-              <div class="bar" style="width: {{incident_type.percentage}}%;"></div>
-            </div>
-            <!--/ BAR ITEM-->
-          </div>
-        </div>
-  
       </div>
-    <!--/ SKILLS BAR SIDE-->
+
     </div>
   </div>
-</section>
-<!-- </div> -->
+  <!-- end upper main stats -->
 
+  <div id="pad-wrapper" class="full" ng-controller="IncidentCtrl">
+
+    <div id="main-map-canvas" class=""></div>
+
+    <!-- table sample -->
+    <!-- the script for the toggle all checkboxes from header is located in js/theme.js -->
+    <div class="table-products section" style="margin-top:0px; border-top:0px;">
+      <div class="row head">
+        <div class="col-md-12">
+          <h4><%= t :recent_incidents %></h4>
+        </div>
+      </div>
+
+      <div class="row">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th class="col-md-1"><%= Incident.human_attribute_name(:incident_type) %></th>
+              <th class="col-md-3"><span class="line"></span><%= Incident.human_attribute_name(:full_address) %></th>
+              <th class="col-md-3"><span class="line"></span><%= Incident.human_attribute_name(:description) %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="firstxx" ng-repeat="incident in incidents | limitTo:5">
+              <td>
+                <span class="label label-danger">{{incident.translated_type}}</span>
+              </td>
+              <td>{{incident.full_address}}</td>
+              <td class="description">{{incident.description}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+     
+    </div>
+    <!-- end table sample -->
+
+    <div>
+    </div>
+  </div>
+</div>

@@ -1,126 +1,109 @@
-<script type="text/javascript">
+<%= stylesheet_link_tag    "forms", media: "all" %>
 
-</script>
+<div id="pad-wrapper" class="form-page">
+  <div class="row form-wrapper">
 
+    <div class="col-md-8">
+      <h3 class="name" style="display: inline;"><%= t("menu.report_incident") %></h3>
 
-<section id="Section-5">
-  <div class="container">
+      <% if @incident.errors.any? %>
+        <h4 style="padding-top:0; margin-top:0; display:inline; float: right;">
+          <i class="icon-warning-sign icon-1x"></i>&nbsp;
+          <span class="alert-msg"><%= t :errors_found %></span>
+        </h4>
+      <% end %>
+    </div>
 
-    <div class="row">
-      <div class="col-sm-12 col-lg-12">
+    <!-- left column -->
+    <div class="col-md-8 column top-border-sep">
+      <%= form_for(@incident, html: {class: "", role: "forxm"}) do |f| %>
 
-        <%= form_for(@incident, html: {class: "form-horizontal", role: "form"}) do |f| %>
-          <% if @incident.errors.any? %>
-            <div id="error_explanationx" class="panel panel-danger">
-              <div class="panel-heading">
-                <h3 style="padding-top:0; margin-top:0;"><i class="icon-warning-sign icon-1x"></i>&nbsp;<%= t :errors_found %></h3>
-              </div>
-              
-              <div class="panel-body">
-                <ul>
-                <% @incident.errors.full_messages.each do |msg| %>
-                  <li>&nbsp;<%= msg %></li>
-                <% end %>
-                </ul>
+        <ul class="nav nav-pills" id="entry-tab">
+          <li class="active"><a href="#manual"><%= Incident.human_attribute_name(:manual_entry) %></a></li>
+          <li><a href="#gps" id="gps-link"><%= Incident.human_attribute_name(:gps_entry) %></a></li>
+        </ul>
+        
+        <p></p>
+        
+        <div class="tab-content">
+          <div class="tab-pane active" id="manual">
+            <div class="field-box">
+              <%= f.label :address_1, class: "col-lg-2 control-label" %>
+              <div class="col-md-7">
+                <%= f.text_field :address_1, class: "form-control" %>
               </div>
             </div>
-          <% end %>
-
-          <div class="panel panel-primary">
-            <div class="panel-heading">
-              <h3 style="padding-top:0; margin-top:0;"><i class="icon-plus-sign icon-1x"></i> <%= t("menu.report_incident") %></h3>
+            <div class="field-box">
+              <%= f.label :address_2, class: "col-lg-2 control-label" %>
+              <div class="col-md-7">
+                <%= f.text_field :address_2, class: "form-control" %>
+              </div>
             </div>
-
-            <div class="panel-body">
-
-              <ul class="nav nav-pills" id="entry-tab">
-                <li class="active"><a href="#manual"><%= Incident.human_attribute_name(:manual_entry) %></a></li>
-                <li><a href="#gps" id="gps-link"><%= Incident.human_attribute_name(:gps_entry) %></a></li>
-              </ul>
-
-              <p></p>
-
-              <div class="tab-content">
-                <div class="tab-pane active" id="manual">
-                  <div class="field form-group">
-                    <%= f.label :address_1, class: "col-lg-2 control-label" %>
-                    <div class="col-lg-10">
-                      <%= f.text_field :address_1, class: "form-control" %>
-                    </div>
-                  </div>
-                  <div class="field form-group">
-                    <%= f.label :address_2, class: "col-lg-2 control-label" %>
-                    <div class="col-lg-10">
-                      <%= f.text_field :address_2, class: "form-control" %>
-                    </div>
-                  </div>
-                  <div class="field form-group">
-                    <%= f.label :neighborhood, class: "col-lg-2 control-label" %>
-                    <div class="col-lg-10">
-                      <%= f.text_field :neighborhood, class: "form-control" %>
-                    </div>
-                  </div>
-                  <div class="field form-group">
-                    <%= f.label :city, class: "col-lg-2 control-label" %>
-                    <div class="col-lg-10">
-                      <%= f.select :city, options_for_select( Incident.cities.collect{ |x| [x, x] } ),
-                        {prompt: true}, class: "form-control" %>
-                    </div>
-                  </div>
-                  <div class="field form-group">
-                    <%= f.label :zip, class: "col-lg-2 control-label" %>
-                    <div class="col-lg-10">
-                      <%= f.text_field :zip, class: "form-control" %>
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="tab-pane" id="gps">
-                  <div class="field form-group">
-                    <%= f.label :latitude, class: "col-lg-2 control-label" %>
-                    <div class="col-lg-10">
-                      <%= f.text_field :latitude, class: "form-control", readonly: "readonly" %>
-                    </div>
-                  </div>
-                  <div class="field form-group">
-                    <%= f.label :longitude, class: "col-lg-2 control-label" %>
-                    <div class="col-lg-10">
-                      <%= f.text_field :longitude, class: "form-control", readonly: "readonly" %>
-                    </div>
-                  </div>
-                </div>
+            <div class="field-box">
+              <%= f.label :neighborhood, class: "col-lg-2 control-label" %>
+              <div class="col-md-7">
+                <%= f.text_field :neighborhood, class: "form-control" %>
               </div>
-
-              
-              <div class="field form-group">
-                <%= f.label :incident_type, class: "col-lg-2 control-label" %>
-                <div class="col-lg-10">
-                  <%= f.select :incident_type, 
-                    options_for_select( Incident::TYPES.collect{ |x| [Incident.human_attribute_name(x), x ] } ),
-                    {prompt: true}, class: "form-control" %>
-                </div>
+            </div>
+            <div class="field-box">
+              <%= f.label :city, class: "col-lg-2 control-label" %>
+              <div class="col-md-7">
+                <%= f.select :city, options_for_select( Incident.cities.collect{ |x| [x, x] } ),
+                  {prompt: true}, class: "form-controlx" %>
               </div>
-              <div class="field form-group">
-                <%= f.label :occured_at, class: "col-lg-2 control-label" %>
-                <div class="col-lg-10">
-                  <%= f.datetime_select :occured_at %>
-                </div>
-              </div>
-              <div class="field form-group">
-                <%= f.label :description, class: "col-lg-2 control-label" %>
-                <div class="col-lg-10">
-                  <%= f.text_area :description, class: "form-control" %>
-                </div>
-              </div>
-              <div class="actions form-group">
-                <div class="col-sm-offset-7 col-lg-7">
-                  <%= f.submit t("save"), class: "btn btn-default" %>
-                </div>
+            </div>
+            <div class="field-box">
+              <%= f.label :zip, class: "col-lg-2 control-label" %>
+              <div class="col-md-7">
+                <%= f.text_field :zip, class: "form-control" %>
               </div>
             </div>
           </div>
-        <% end %>
-      </div>
+          
+          <div class="tab-pane" id="gps">
+            <div class="field-box">
+              <%= f.label :latitude, class: "col-lg-2 control-label" %>
+              <div class="col-md-7">
+                <%= f.text_field :latitude, class: "form-control", readonly: "readonly" %>
+              </div>
+            </div>
+            <div class="field-box">
+              <%= f.label :longitude, class: "col-lg-2 control-label" %>
+              <div class="col-md-7">
+                <%= f.text_field :longitude, class: "form-control", readonly: "readonly" %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="field-box">
+          <%= f.label :incident_type, class: "col-lg-2 control-label" %>
+          <div class="col-md-7">
+            <%= f.select :incident_type, 
+              options_for_select( Incident::TYPES.collect{ |x| [Incident.human_attribute_name(x), x ] } ),
+              {prompt: true}, class: "form-controlx" %>
+          </div>
+        </div>
+        <div class="field-box">
+          <%= f.label :occured_at, class: "col-lg-2 control-label" %>
+          <div class="col-md-7">
+            <%= f.datetime_select :occured_at %>
+          </div>
+        </div>
+        <div class="field-box">
+          <%= f.label :description, class: "col-lg-2 control-label" %>
+          <div class="col-md-7">
+            <%= f.text_area :description, class: "form-control" %>
+          </div>
+        </div>
+        <div class="actions form-group">
+          <div class="col-sm-offset-7 col-lg-7">
+            <%= f.submit t("save"), class: "btn btn-glow primary" %>
+          </div>
+        </div>
+
+      <% end %>
     </div>
   </div>
-</section>
+</div>
+
