@@ -25,9 +25,9 @@ app.factory "Incident", ["$resource", ($resource) ->
         title: incident.translated_type
       });
 
-      content_string = "<div class='about-box dark map' id='info-window-content'>" +
-      '<h4><span><i class="icon-info-sign icon-1x"></i>&nbsp;' + incident.translated_type + '<span></h4>' +
-      '<div>' +
+      content_string = "<div class='about-box dark map' id='info-window-content' style='padding-top:3px;'>" +
+      '<span class="label label-danger">' + incident.translated_type + '</span><br/>' +
+      '<div style="margin-top:5px;">' +
       '<p>' + incident.full_address + '</p>' +
       '<p>' + incident.description + '</p>' +
       '</div>' +
