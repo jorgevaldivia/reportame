@@ -15,7 +15,6 @@
 	    </div>
     </header>
     <!-- end navbar -->
-
     <!-- sidebar -->
     <div id="sidebar-nav">
       <ul id="dashboard-menu">
@@ -29,14 +28,14 @@
             <span><%= t("menu.home") %></span>
           </a>
         </li>            
-        <li <%= 'class=active' if controller.class == IncidentsController %>>
+        <li <%= 'class=active' if controller.class == IncidentsController && (controller.action_name == "new" || controller.action_name == "create") %>>
           <a href="<%= new_incident_path %>">
             <i class="icon-plus"></i>
             <span><%= t("menu.report_incident") %></span>
           </a>
         </li>
 
-        <li <%= 'class=active' if controller.class == IncidentsController %>>
+        <li <%= 'class=active' if controller.class == IncidentsController && (controller.action_name != "new" && controller.action_name != "create") %>>
           <a href="<%= incidents_path %>">
             <i class="icon-signal"></i>
             <span><%= t(Incident.model_name.human(count: 2)) %></span>
