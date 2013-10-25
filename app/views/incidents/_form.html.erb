@@ -48,8 +48,10 @@
             <div class="field-box">
               <%= f.label :city, class: "col-lg-2 control-label" %>
               <div class="col-md-7">
-                <%= f.select :city, options_for_select( Incident.cities.collect{ |x| [x, x] } ),
-                  {prompt: true}, class: "form-controlx" %>
+                <div class="ui-select">
+                  <%= f.select :city, options_for_select( Incident.cities.collect{ |x| [x, x] } ),
+                    {prompt: true}, class: "form-controlx" %>
+                </div>
               </div>
             </div>
             <div class="field-box">
@@ -79,9 +81,11 @@
         <div class="field-box">
           <%= f.label :incident_type, class: "col-lg-2 control-label" %>
           <div class="col-md-7">
-            <%= f.select :incident_type, 
-              options_for_select( Incident::TYPES.collect{ |x| [Incident.human_attribute_name(x), x ] } ),
-              {prompt: true}, class: "form-controlx" %>
+            <div class="ui-select">
+              <%= f.select :incident_type, 
+                options_for_select( Incident::TYPES.collect{ |x| [Incident.human_attribute_name(x), x ] } ),
+                {prompt: true}, class: "form-controlx" %>
+            </div>
           </div>
         </div>
         <div class="field-box">
