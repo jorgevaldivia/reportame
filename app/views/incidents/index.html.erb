@@ -1,43 +1,61 @@
-<h1>Listing incidents</h1>
+<div id="pad-wrapper" class="full" ng-controller="IncidentCtrl">
 
-<table>
-  <thead>
-    <tr>
-      <th>Address 1</th>
-      <th>Address 2</th>
-      <th>City</th>
-      <th>State</th>
-      <th>Zip</th>
-      <th>Country</th>
-      <th>Description</th>
-      <th>Incident type</th>
-      <th>Occured at</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+  <div id="main-map-canvas" class=""></div>
 
-  <tbody>
-    <% @incidents.each do |incident| %>
-      <tr>
-        <td><%= incident.address_1 %></td>
-        <td><%= incident.address_2 %></td>
-        <td><%= incident.city %></td>
-        <td><%= incident.state %></td>
-        <td><%= incident.zip %></td>
-        <td><%= incident.country %></td>
-        <td><%= incident.description %></td>
-        <td><%= incident.incident_type %></td>
-        <td><%= incident.occured_at %></td>
-        <td><%= link_to 'Show', incident %></td>
-        <td><%= link_to 'Edit', edit_incident_path(incident) %></td>
-        <td><%= link_to 'Destroy', incident, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <!-- table sample -->
+  <!-- the script for the toggle all checkboxes from header is located in js/theme.js -->
+  <div class="table-products section" style="margin-top:0px; border-top:0px;">
+    <div class="row head">
+      <div class="col-md-12">
+        <h4><%= t :recent_incidents %></h4>
+      </div>
+    </div>
 
-<br>
+    <div class="row filter-block">
+      <div class="pull-right">
+        <div class="ui-select">
+          <select>
+            <option>Filter users</option>
+            <option>Signed last 30 days</option>
+            <option>Active users</option>
+          </select>
+        </div>
+        <input type="text" class="search">
 
-<%= link_to 'New Incident', new_incident_path %>
+        <a href="<%= new_incident_path %>" class="btn-flat success new-product">
+          + <%= t("page.actions.new", name: Incident.model_name.human) %>
+        </a>
+      </div>
+    </div>
+
+    <div class="row">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th class="col-md-1"><%= Incident.human_attribute_name(:incident_type) %></th>
+            <th class="col-md-3"><span class="line"></span><%= Incident.human_attribute_name(:full_address) %></th>
+            <th class="col-md-3"><span class="line"></span><%= Incident.human_attribute_name(:occured_at) %></th>
+            <th class="col-md-3"><span class="line"></span><%= Incident.human_attribute_name(:description) %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="firstxx" ng-repeat="incident in incidents | limitTo:5">
+            <td>
+              <span class="label label-danger">{{incident.translated_type}}</span>
+            </td>
+            <td>{{incident.full_address}}</td>
+            <td>{{incident.occured_at}}</td>
+            <td class="description">{{incident.description}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+   
+  </div>
+  <!-- end table sample -->
+
+  <div>
+  </div>
+</div>
+<!-- end pad-wrapper -->
+

@@ -13,6 +13,10 @@ es:
     home: Inicio
     report_incident: Reportar
 
+  page:
+    actions:
+      new: "Nuevo %{name}"
+
   date:
     order:
       - :day
