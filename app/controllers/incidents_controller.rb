@@ -6,12 +6,20 @@ class IncidentsController < ApplicationController
   # GET /incidents
   # GET /incidents.json
   def index
-    @incidents = Incident.order("id desc").all
-
     respond_to do |format|
       format.html
-      format.json{ render json: @incidents.to_json(methods: [:full_address, :translated_type]) }
+      format.json{ 
+        @incidents = Incident.order("id desc").paginate(page: params[:page], per_page: 25)
+
+        render json: {records: @incidents.as_json(methods: [:full_address, :translated_type]), 
+          total_pages: @incidents.total_pages, total_entries: @incidents.total_entries, 
+          offset: @incidents.offset, per_page: @incidents.per_page} 
+      }
     end
+  end
+
+  def blank
+    
   end
 
   # GET /incidents/1

@@ -2,18 +2,35 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-app = angular.module("Reportame", ["ngResource"])
+app = angular.module("Reportame", ["ngResource", "ui.bootstrap"])
 
 app.factory "Incident", ["$resource", ($resource) ->
-  $resource("/incidents/:id", {id: "@id"}, {update: {method: "PUT"}})
+  $resource("/incidents/:id", {id: "@id"}, {update: {method: "PUT"}, 'query': {method: 'GET', isArray: false}} )
 ]
 
 @IncidentCtrl = ["$scope", "Incident", ($scope, Incident) ->
+  $scope.totalItems       = 0
+  $scope.currentPage      = 1
+  $scope.maxSize          = 5
+  
+  $scope.setPage = (pageNo) ->
+    $scope.currentPage = pageNo;
+    $scope.loadIncidents();
+    $.scrollTo("#incidents-section", 600)
 
-  $scope.incidents = Incident.query( ->
-    $scope.createMap()
-    $scope.setMarkers()
-  )
+  # $scope.incidents = Incident.query( ->
+  #   # $scope.createMap()
+  #   # $scope.setMarkers()
+  # )
+
+  $scope.loadIncidents = ->
+    Incident.query({page: $scope.currentPage}, ( (data) ->
+      $scope.incidents    = data.records
+      $scope.itemsPerPage = data.per_page
+      $scope.totalItems   = data.total_entries
+    ),
+    (data) ->
+    )
 
   $scope.setMarkers = ->
     infowindow = new google.maps.InfoWindow({content: "", maxWidth: 450})
@@ -54,9 +71,9 @@ app.factory "Incident", ["$resource", ($resource) ->
       main_map.setCenter(center); 
     );
 
-    # alert("y");
-
     $scope.map = main_map
+
+  $scope.loadIncidents()
 ]
 
 app.factory "IncidentType", ["$resource", ($resource) ->

@@ -3,6 +3,6 @@ class HomeController < ApplicationController
   end
 
   def blank
-  	render layout: false
+  	# render layout: false
   end
 end

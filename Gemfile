@@ -57,3 +57,4 @@ gem 'angularjs-rails'
 gem "geocoder"
 gem "pg"
 gem 'newrelic_rpm'
+gem "will_paginate"

@@ -1,10 +1,8 @@
 <div id="pad-wrapper" class="full" ng-controller="IncidentCtrl">
 
-  <div id="main-map-canvas" class=""></div>
-
   <!-- table sample -->
   <!-- the script for the toggle all checkboxes from header is located in js/theme.js -->
-  <div class="table-products section" style="margin-top:0px; border-top:0px;">
+  <div class="table-products section" style="margin-top:0px; border-top:0px;" id="incidents-section">
     <div class="row head">
       <div class="col-md-12">
         <h4><%= t :recent_incidents %></h4>
@@ -29,7 +27,7 @@
     </div>
 
     <div class="row">
-      <table class="table table-hover">
+      <table class="table table-hover" id="incidents-table">
         <thead>
           <tr>
             <th class="col-md-1"><%= Incident.human_attribute_name(:incident_type) %></th>
@@ -39,7 +37,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="firstxx" ng-repeat="incident in incidents | limitTo:5">
+          <tr class="firstxx" ng-repeat="incident in incidents">
             <td>
               <span class="label label-danger">{{incident.translated_type}}</span>
             </td>
@@ -51,11 +49,13 @@
       </table>
     </div>
    
+    <pagination total-items="totalItems" page="currentPage" items-per-page="25"
+      class="pull-right" on-select-page="setPage(page)"></pagination>
+
   </div>
   <!-- end table sample -->
 
-  <div>
-  </div>
+
 </div>
 <!-- end pad-wrapper -->
 
