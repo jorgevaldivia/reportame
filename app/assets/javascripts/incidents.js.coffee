@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-app = angular.module("Reportame", ["ngResource", "ui.bootstrap"])
+app = angular.module("Reportame", ["ngResource", "ui.bootstrap", "table.extensions"])
 
 app.factory "Incident", ["$resource", ($resource) ->
   $resource("/incidents/:id", {id: "@id"}, {update: {method: "PUT"}, 'query': {method: 'GET', isArray: false}} )
@@ -12,7 +12,9 @@ app.factory "Incident", ["$resource", ($resource) ->
   $scope.totalItems       = 0
   $scope.currentPage      = 1
   $scope.maxSize          = 5
-  
+  $scope.incidentTypes    = []
+  $scope.incident_type    = ""
+
   $scope.setPage = (pageNo) ->
     $scope.currentPage = pageNo;
     $scope.loadIncidents();
@@ -24,10 +26,12 @@ app.factory "Incident", ["$resource", ($resource) ->
   # )
 
   $scope.loadIncidents = ->
-    Incident.query({page: $scope.currentPage}, ( (data) ->
-      $scope.incidents    = data.records
-      $scope.itemsPerPage = data.per_page
-      $scope.totalItems   = data.total_entries
+    Incident.query({page: $scope.currentPage, incident_type: $scope.incident_type}, ( (data) ->
+      $scope.incidents      = data.records
+      $scope.itemsPerPage   = data.per_page
+      $scope.totalItems     = data.total_entries
+      if $scope.incidentTypes.length == 0
+        $scope.incidentTypes  = data.types
     ),
     (data) ->
     )

@@ -47,15 +47,15 @@ class Incident < ActiveRecord::Base
 		Incident.translate_type self.incident_type
 	end
 
+	def self.translate_type type, plural=false
+		count = plural ? "other" : "one"
+		I18n.t("activerecord.attributes.incident.#{type}.#{count}")
+	end
+
 	protected
 
 	def full_address_changed?
 		address_1_changed? || address_2_changed? || city_changed? || state_changed? || zip_changed? || country_changed?
-	end
-
-	def self.translate_type type, plural=false
-		count = plural ? "other" : "one"
-		I18n.t("activerecord.attributes.incident.#{type}.#{count}")
 	end
 
 	def set_constrained_address_values

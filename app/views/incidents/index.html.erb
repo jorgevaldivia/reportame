@@ -11,13 +11,10 @@
 
     <div class="row filter-block">
       <div class="pull-right">
-        <div class="ui-select">
-          <select>
-            <option>Filter users</option>
-            <option>Signed last 30 days</option>
-            <option>Active users</option>
-          </select>
-        </div>
+
+        <table-filter incident-types="incidentTypes" incident-type="incidentType">
+        </table-filter>
+
         <input type="text" class="search">
 
         <a href="<%= new_incident_path %>" class="btn-flat success new-product">

@@ -9,9 +9,12 @@ class IncidentsController < ApplicationController
     respond_to do |format|
       format.html
       format.json{ 
-        @incidents = Incident.order("id desc").paginate(page: params[:page], per_page: 25)
+        @incidents = Incident.order("id desc")
+        @incidents = @incidents.where(incident_type: params[:incident_type]) if params[:incident_type].present?
+        @incidents = @incidents.paginate(page: params[:page], per_page: 25)
 
         render json: {records: @incidents.as_json(methods: [:full_address, :translated_type]), 
+          types: Incident::TYPES.map{ |x| {value: x, name: Incident.translate_type(x)} },
           total_pages: @incidents.total_pages, total_entries: @incidents.total_entries, 
           offset: @incidents.offset, per_page: @incidents.per_page} 
       }
