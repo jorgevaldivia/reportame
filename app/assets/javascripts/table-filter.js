@@ -8,10 +8,17 @@ angular.module('table.filter', [])
   }
 
   $scope.selectFilter = function() {
-    $scope.$parent.incident_type    = $scope.option.value;
+    $scope.$parent.incidentType    = $scope.option.value;
+  };
+
+  $scope.setSearch = function() {
+    $scope.$parent.searchText       = $scope.searchText;
+  };
+
+  $scope.search = function(){
     $scope.$parent.currentPage      = 1
     $scope.$parent.loadIncidents()
-  };
+  }
 
 }])
 

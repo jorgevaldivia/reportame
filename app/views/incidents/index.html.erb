@@ -10,13 +10,9 @@
     </div>
 
     <div class="row filter-block">
-      <div class="pull-right">
-
         <table-filter incident-types="incidentTypes" incident-type="incidentType">
         </table-filter>
-
-        <input type="text" class="search">
-
+      <div class="pull-right">
         <a href="<%= new_incident_path %>" class="btn-flat success new-product">
           + <%= t("page.actions.new", name: Incident.model_name.human) %>
         </a>

@@ -10,7 +10,9 @@ class IncidentsController < ApplicationController
       format.html
       format.json{ 
         @incidents = Incident.order("id desc")
-        @incidents = @incidents.where(incident_type: params[:incident_type]) if params[:incident_type].present?
+        @incidents = @incidents.search(params[:q])    if params[:q].present?
+        @incidents = @incidents.where(incident_type: 
+                      params[:incident_type])         if params[:incident_type].present?
         @incidents = @incidents.paginate(page: params[:page], per_page: 25)
 
         render json: {records: @incidents.as_json(methods: [:full_address, :translated_type]), 

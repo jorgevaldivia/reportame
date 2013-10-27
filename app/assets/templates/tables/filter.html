@@ -1,3 +1,9 @@
-<div class="ui-select">
-	<select ng-model="option" ng-options="t.name for t in incidentTypes" ng-change="selectFilter()" />
+<div style='display:inline;'>
+	<div class="ui-select">
+		<select ng-model="option" ng-options="t.name for t in incidentTypes" ng-change="selectFilter()" />
+	</div>
+
+	<input type="text" class="search" ng-model="searchText" ng-change="setSearch()" style="margin-right: 20px"/>
+
+	<div class="btn-glow" ng-click="search()"><i class="icon-search"></i></div>
 </div>

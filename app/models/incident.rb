@@ -1,5 +1,11 @@
 class Incident < ActiveRecord::Base
 	# encoding: utf-8
+	include PgSearch
+
+	# Required for pg_search on rails 4
+	class << self; public :sanitize_sql_array; end
+  pg_search_scope :search, 
+  	against: [:address_1, :address_2, :city, :state, :zip, :country, :description]
 
 	geocoded_by 					:full_address
 	reverse_geocoded_by 	:latitude, :longitude do |obj, results|

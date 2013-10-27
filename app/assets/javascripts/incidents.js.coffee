@@ -13,7 +13,8 @@ app.factory "Incident", ["$resource", ($resource) ->
   $scope.currentPage      = 1
   $scope.maxSize          = 5
   $scope.incidentTypes    = []
-  $scope.incident_type    = ""
+  $scope.incidentType     = ""
+  $scope.searchText       = ""
 
   $scope.setPage = (pageNo) ->
     $scope.currentPage = pageNo;
@@ -26,7 +27,8 @@ app.factory "Incident", ["$resource", ($resource) ->
   # )
 
   $scope.loadIncidents = ->
-    Incident.query({page: $scope.currentPage, incident_type: $scope.incident_type}, ( (data) ->
+    Incident.query({page: $scope.currentPage, incident_type: $scope.incidentType, q: $scope.searchText}, ( (data) ->
+
       $scope.incidents      = data.records
       $scope.itemsPerPage   = data.per_page
       $scope.totalItems     = data.total_entries
