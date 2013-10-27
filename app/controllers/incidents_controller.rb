@@ -10,10 +10,14 @@ class IncidentsController < ApplicationController
       format.html
       format.json{ 
         @incidents = Incident.order("id desc")
+
+        # We want to show many more if map
+        per_page = params[:map].present? ? 500 : 25
+
         @incidents = @incidents.search(params[:q])    if params[:q].present?
         @incidents = @incidents.where(incident_type: 
                       params[:incident_type])         if params[:incident_type].present?
-        @incidents = @incidents.paginate(page: params[:page], per_page: 25)
+        @incidents = @incidents.paginate(page: params[:page], per_page: per_page)
 
         render json: {records: @incidents.as_json(methods: [:full_address, :translated_type]), 
           types: Incident::TYPES.map{ |x| {value: x, name: Incident.translate_type(x)} },

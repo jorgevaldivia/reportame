@@ -6,7 +6,6 @@
   <div id="main-stats" ng-controller="IncidentTypeCtrl">
     <div class="row stats-row">
 
-    
       <div ng-repeat="incident_type in incident_types | orderBy:'total':true | limitTo:4">
 
         <div class="col-md-3 col-sm-3 stat">
@@ -23,9 +22,11 @@
   </div>
   <!-- end upper main stats -->
 
-  <div id="pad-wrapper" class="full" ng-controller="IncidentCtrl">
+  <div id="pad-wrapper" class="full" ng-controller="IncidentMapCtrl">
 
-    <div id="main-map-canvas" class=""></div>
+    <!-- <div id="main-map-canvas" class=""></div> -->
+    <table-map incidents="incidents">
+    </table-map>
 
     <!-- table sample -->
     <!-- the script for the toggle all checkboxes from header is located in js/theme.js -->

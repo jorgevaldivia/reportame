@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-app = angular.module("Reportame", ["ngResource", "ui.bootstrap", "table.extensions"])
+app = angular.module("Reportame", ["ngResource", "ui.bootstrap", "table.extensions", "map.pins"])
 
 app.factory "Incident", ["$resource", ($resource) ->
   $resource("/incidents/:id", {id: "@id"}, {update: {method: "PUT"}, 'query': {method: 'GET', isArray: false}} )
@@ -15,20 +15,15 @@ app.factory "Incident", ["$resource", ($resource) ->
   $scope.incidentTypes    = []
   $scope.incidentType     = ""
   $scope.searchText       = ""
+  $scope.from             = "list"
 
   $scope.setPage = (pageNo) ->
     $scope.currentPage = pageNo;
     $scope.loadIncidents();
     $.scrollTo("#incidents-section", 600)
 
-  # $scope.incidents = Incident.query( ->
-  #   # $scope.createMap()
-  #   # $scope.setMarkers()
-  # )
-
   $scope.loadIncidents = ->
     Incident.query({page: $scope.currentPage, incident_type: $scope.incidentType, q: $scope.searchText}, ( (data) ->
-
       $scope.incidents      = data.records
       $scope.itemsPerPage   = data.per_page
       $scope.totalItems     = data.total_entries
@@ -37,47 +32,6 @@ app.factory "Incident", ["$resource", ($resource) ->
     ),
     (data) ->
     )
-
-  $scope.setMarkers = ->
-    infowindow = new google.maps.InfoWindow({content: "", maxWidth: 450})
-
-    angular.forEach $scope.incidents, (incident) ->
-      marker = new google.maps.Marker({
-        position: new google.maps.LatLng(incident.latitude, incident.longitude),
-        map: $scope.map,
-        title: incident.translated_type
-      });
-
-      content_string = "<div class='about-box dark map' id='info-window-content' style='padding-top:3px;'>" +
-      '<span class="label label-danger">' + incident.translated_type + '</span><br/>' +
-      '<div style="margin-top:5px;">' +
-      '<p>' + incident.full_address + '</p>' +
-      '<p>' + incident.description + '</p>' +
-      '</div>' +
-      '</div>'
-
-      google.maps.event.addListener(marker, 'click', ->
-         infowindow.setContent content_string
-         infowindow.open $scope.map, marker
-      );
-
-  $scope.createMap = ->
-    $("#main-map-canvas").removeClass("hide");
-
-    mapOptions = {
-      center: new google.maps.LatLng(20.6667, -103.3503),
-      zoom: 12,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-    main_map = new google.maps.Map(document.getElementById("main-map-canvas"), mapOptions);
-
-    google.maps.event.addDomListener(window, "resize", ->
-      center = main_map.getCenter();
-      google.maps.event.trigger(main_map, "resize");
-      main_map.setCenter(center); 
-    );
-
-    $scope.map = main_map
 
   $scope.loadIncidents()
 ]
