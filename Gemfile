@@ -59,3 +59,6 @@ gem "pg"
 gem 'newrelic_rpm'
 gem "will_paginate"
 gem 'pg_search'
+gem "carrierwave"
+gem "fog"
+gem "rmagick", "2.13.2"

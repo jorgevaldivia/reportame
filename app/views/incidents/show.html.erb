@@ -1,49 +1,62 @@
-<p id="notice"><%= notice %></p>
+<%= stylesheet_link_tag    "user-profile", media: "all" %>
+<%= stylesheet_link_tag    "gallery", media: "all" %>
 
-<p>
-  <strong>Address 1:</strong>
-  <%= @incident.address_1 %>
-</p>
 
-<p>
-  <strong>Address 2:</strong>
-  <%= @incident.address_2 %>
-</p>
+<div id="pad-wrapper" class="user-profile">
 
-<p>
-  <strong>City:</strong>
-  <%= @incident.city %>
-</p>
+  <ol class="breadcrumb">
+    <li><a href="<%= root_url %>"><%= t "menu.home" %></a></li>
+    <li><a href="<%= incidents_url %>"><%= Incident.model_name.human(count: 2) %></a></li>
+    <li class="active"><%= Incident.model_name.human %></li>
+  </ol>
 
-<p>
-  <strong>State:</strong>
-  <%= @incident.state %>
-</p>
+  <!-- header -->
+  <div class="row header">
+    <div class="col-md-8">
+      <h3 class="name"><%= @incident.full_address %></h3>
+      <span class="area"><span class="label label-danger"><%= @incident.translated_type %></span></span>
+    </div>
+    <a class="btn-flat icon pull-right delete-user" data-toggle="tooltip" title="Delete user" data-placement="top">
+      <i class="icon-trash"></i>
+    </a>
+     <a href="<%= edit_incident_path(@incident) %>" class="btn-flat icon large pull-right edit">
+      <%= t("page.actions.edit", name: Incident.model_name.human) %>
+    </a>
+  </div>
 
-<p>
-  <strong>Zip:</strong>
-  <%= @incident.zip %>
-</p>
+  <div class="row profile">
+    <!-- bio, new note & orders column -->
+    <div class="col-md-9 bio">
+      <div class="profile-box">
+        <!-- biography -->
+        <div class="col-md-12 section">
+          <h6><%= Incident.human_attribute_name(:description) %></h6>
+          <p><%= @incident.description %></p>
+        </div>
 
-<p>
-  <strong>Country:</strong>
-  <%= @incident.country %>
-</p>
+        <div class="col-md-12 section">
+          <h6><%= Incident.human_attribute_name(:occured_at) %></h6>
+          <p><%= @incident.occured_at %></p>
+        </div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @incident.description %>
-</p>
+      </div>
+    </div>
 
-<p>
-  <strong>Incident type:</strong>
-  <%= @incident.incident_type %>
-</p>
+    <div class="col-md-9 bio">
+      <div class="profile-box">
+      </div>
+    </div>
+  </div>
 
-<p>
-  <strong>Occured at:</strong>
-  <%= @incident.occured_at %>
-</p>
 
-<%= link_to 'Edit', edit_incident_path(@incident) %> |
-<%= link_to 'Back', incidents_path %>
+  <div ng-controller="ImageCtrl">
+    <% if @incident.images.any? %>
+      <%= render partial: "gallery" %>
+    <% else %>
+      <%= render partial: "no_gallery" %>
+    <% end %>
+
+    <%= render partial: "upload_image_modal" %>
+  </div>
+
+</div>

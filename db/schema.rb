@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130904235325) do
+ActiveRecord::Schema.define(version: 20131028003544) do
+
+  create_table "images", force: true do |t|
+    t.string  "file"
+    t.string  "item_type"
+    t.integer "item_id"
+    t.text    "description"
+  end
+
+  add_index "images", ["item_id"], name: "index_images_on_item_id", using: :btree
 
   create_table "incidents", force: true do |t|
     t.string   "address_1"

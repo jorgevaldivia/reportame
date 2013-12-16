@@ -25,6 +25,8 @@ class Incident < ActiveRecord::Base
 	validates 						:city, inclusion: { in: Proc.new{ Incident.cities } }
 	validates 						:incident_type, :description, :occured_at, presence: true
 
+	has_many :images, class_name: "::Image", foreign_key: "item_id", conditions: ["item_type = ?", "Incident"]
+
 	TYPES 								= ["robbery", "assault", "auto_theft", "vandalism", "violence", "other"]
 
 	def self.cities

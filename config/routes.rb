@@ -1,6 +1,8 @@
 Reportame::Application.routes.draw do
   resources :incident_types, only: [:index]
-  resources :incidents
+  resources :incidents do
+    resources :images, only: [:index, :show, :create, :delete]
+  end
 
   get "home/index"
   get "home/blank"

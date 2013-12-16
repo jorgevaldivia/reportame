@@ -8,6 +8,10 @@ app.factory "Incident", ["$resource", ($resource) ->
   $resource("/incidents/:id", {id: "@id"}, {update: {method: "PUT"}, 'query': {method: 'GET', isArray: false}} )
 ]
 
+app.factory "Image", ["$resource", ($resource) ->
+  $resource("/incidents/:incidentId/images/:id", {incidentId: "@incidentId", id: "@id"} )
+]
+
 @IncidentCtrl = ["$scope", "Incident", ($scope, Incident) ->
   $scope.totalItems       = 0
   $scope.currentPage      = 1

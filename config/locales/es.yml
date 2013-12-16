@@ -16,6 +16,9 @@ es:
   page:
     actions:
       new: "Nuevo %{name}"
+      new_female: "Nueva %{name}"
+      edit: "Editar %{name}"
+      cancel: "Cancelar"
 
   date:
     order:
@@ -33,6 +36,9 @@ es:
       incident:
         one: Reporte
         other: Reportes
+      image:
+        one: Imagen
+        other: Imágenes
     attributes:
       incident:
         robbery:
@@ -62,12 +68,17 @@ es:
         zip: CP
         country: Pais
         incident_type: Tipo
-        description: Descripcíon
-        occured_at: Ocurrio
+        description: Descripción
+        occured_at: Fecha
         neighborhood: Colonia
         latitude: Latitud
         longitude: Longitud
-        full_address: Ubicacion
+        full_address: Ubicación
+      image:
+        no_images: "Aun no tienes imágenes."
+        no_images_description: "Agrega imágenes para que otros puedan mejor entender lo que pasó."
+        file: Imagen
+        description: "Descripción"
     errors:
         messages:
           inclusion: "no es valor aceptable"

@@ -1,0 +1,24 @@
+    <div class="no-gallery">
+
+      <div class="row header">
+        <div class="col-md-8">
+          <h4 class="name"><%= Image.model_name.human(count: 2) %></h4>
+        </div>
+      </div>
+
+      <div class="row profile">
+        <!-- bio, new note & orders column -->
+        <div class="col-md-9 bio">
+
+          <div class="center ">
+            <img src="/assets/no-img-gallery.png">
+            <h6><%= Image.human_attribute_name(:no_images) %></h6>
+            <p><%= Image.human_attribute_name(:no_images_description) %></p>
+            <a data-toggle="modal" href="#image-modal" class="btn-glow primary">
+              <%= t("page.actions.new_female", name: Image.model_name.human) %>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+

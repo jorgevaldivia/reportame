@@ -1,0 +1,51 @@
+<!-- Modal -->
+<div class="modal fade" id="image-modal" tabindex="-1" role="dialog" 
+  aria-labelledby="image-modalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <%= form_for ::Image.new, url: incident_images_path(@incident), 
+      :html => {:multipart => true, class: "form-horizontal"} do |f| %>
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            &times;
+          </button>
+          <h4 class="modal-title">
+            <%= t("page.actions.new_female", name: Image.model_name.human) %>
+          </h4>
+        </div>
+        <div class="modal-body">
+          <!-- <form class="form-horizontal" role="form"> -->
+            <div class="form-group">
+              <label for="input1" class="col-lg-2 control-label">
+                <%= Image.human_attribute_name(:file) %>
+              </label>
+              <div class="col-lg-10">
+                <!-- <input type="file" ng-model-instant id="fileToUpload" 
+                  onchange="angular.element(this).scope().setFiles(this)" /> -->
+                <%= f.file_field :file %>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="input1" class="col-lg-2 control-label">
+                <%= Image.human_attribute_name(:description) %>
+              </label>
+              <div class="col-lg-10">
+                <!-- <input type="text" class="form-control" id="inputPassword1" 
+                  placeholder="<%= Image.human_attribute_name(:description) %>"> -->
+                <%= f.text_field :description %>
+              </div>
+            </div>
+          <!-- </form> -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">
+            <%= t("page.actions.cancel") %>
+          </button>
+          <!-- <button type="button" class="btn btn-primary"><%= t("save") %></button> -->
+          <%= f.submit t("save"), class: "btn btn-primary" %>
+        </div>
+      </div><!-- /.modal-content -->
+    <% end %>
+
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -1,0 +1,43 @@
+<div class="gallery">
+  <div class="row header">
+    <div class="col-md-8">
+      <h4 class="name"><%= Image.model_name.human(count: 2) %></h4>
+    </div>
+  </div>
+  <!-- gallery wrapper -->
+  <div class="gallery-wrapper">
+    <div class="row gallery-row">
+      <% @incident.images.each_with_index do |image, index| %>
+        <!-- single image -->
+        <div class="col-md-3 img-container">
+          <div class="img-box">
+            <span class="icon trash">
+              <i class="gallery-trash"></i>
+            </span>
+            <a data-toggle="modal" href="#image-modal">
+              <img src="<%= image.file.thumb %>" class="img-responsive" />
+            </a>
+            <p class="title">
+              <%= image.description %>
+            </p>
+          </div>
+        </div>
+
+        <% if (index + 1) % 3 == 0 %>
+          <div class="clearfix"></div>
+        <% end %>
+      <% end %>
+
+      <% if @incident.images.count < 6 %>
+        <div class="col-md-3 new-img">
+          <a data-toggle="modal" href="#image-modal">
+            <img src="/assets/new-gallery-img.png" class="img-responsive">
+          </a>
+        </div>
+      <% end %>
+
+
+    </div>
+  </div>
+  <!-- end gallery wrapper -->
+</div>
